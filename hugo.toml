@@ -1,3 +1,5 @@
 baseURL = 'http://localhost/'
 locale = 'en-us'
-title = 'My New Hugo Project'
+title = 'Portfolio'
+
+theme = 'digio-theme'
