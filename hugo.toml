@@ -1,4 +1,4 @@
-baseURL = 'https://davidedezuane.github.io'
+baseURL = 'http://davidedezuane.github.io'
 languageCode = 'en-us'
 title = 'Davide De Zuane'
 theme = "minimal-black"
