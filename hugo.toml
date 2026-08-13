@@ -1,4 +1,4 @@
-baseURL = 'http://davidedezuane.github.io'
+baseURL = 'https://davidedezuane.github.io'
 languageCode = 'en-us'
 title = 'Davide De Zuane'
 theme = "minimal-black"
@@ -15,7 +15,7 @@ theme = "minimal-black"
   notAlternative = true
 
 [params]
-  brand = "Davide De Zuane"
+  brand = "Portfolio"
   description = "A minimal, dark-mode first personal site, or whatever else you want it to be about"
 
   # Favicon - Place your favicon files in /static/ directory
@@ -24,7 +24,7 @@ theme = "minimal-black"
   appleTouchIcon = "apple-touch-icon.png"
 
   # Logo (optional)
-  logo = "images/logo.png"
+  logo = ""
 
   # Project and blog intro text
   projectsIntro = "Selected projects to display list." # Can be empty
@@ -68,16 +68,8 @@ theme = "minimal-black"
       icon = "devicon-python-plain"
 
     [[params.home.tech]]
-      label = "Java"
-      icon = "devicon-java-plain"
-
-    [[params.home.tech]]
       label = "Spring"
       icon = "devicon-spring-plain"  
-
-    [[params.home.tech]]
-      label = "Vaadin"
-      icon = "devicon-vaadin-plain"    
 
     [[params.home.tech]]
       label = "Debian"
@@ -92,28 +84,12 @@ theme = "minimal-black"
       icon = "devicon-docker-plain"
 
     [[params.home.techReverse]]
-      label = "PostgreSQL"
-      icon = "devicon-postgresql-plain"
-
-    [[params.home.techReverse]]
-      label = "MongoDB"
-      icon = "devicon-mongodb-plain"
-
-    [[params.home.techReverse]]
       label = "Git"
       icon = "devicon-git-plain"
 
     [[params.home.techReverse]]
       label = "Hugo"
       icon = "devicon-hugo-plain"  
-
-    [[params.home.techReverse]]
-      label = "Jenkins"
-      icon = "devicon-jenkins-plain"   
-
-    [[params.home.techReverse]]
-      label = "JetBrains"
-      icon = "devicon-jetbrains-plain" 
 
     [[params.home.techReverse]]
       label = "Json"
@@ -124,24 +100,8 @@ theme = "minimal-black"
       icon = "devicon-linux-plain"          
 
     [[params.home.techReverse]]
-      label = "Liquibase"
-      icon = "devicon-liquibase-plain" 
-
-    [[params.home.techReverse]]
       label = "Markdown"
       icon = "devicon-markdown-original"  
-
-    [[params.home.techReverse]]
-      label = "YAML"
-      icon = "devicon-yaml-plain"  
-
-    [[params.home.techReverse]]
-      label = "Wordpress"
-      icon = "devicon-wordpress-plain"
-
-    [[params.home.techReverse]]
-      label = "WooCommerce"
-      icon = "devicon-woocommerce-plain"            
 
     [[params.home.techReverse]]
       label = "Traefik"
@@ -193,15 +153,15 @@ theme = "minimal-black"
 
   # Hero Section Configuration
   [params.hero]
-    badge = "Researcher"
+    #badge = "PhD Student"
     title = "Hi, I'm Davide De Zuane."
     role = ""
-    summary = "You can write your summary to be displayed here."
-    # avatar = "images/avatar.jpg"  # Optional: 400x400px recommended
+    summary = "PhD Candidate in Cybersecurity @ IMT Lucca"
+    #avatar = "images/puck.jpeg"  # Optional: 400x400px recommended
     location = "Ancona, Italy"
-    focus = "Currently focused on Hugo themes & developer experience."
-    available = true
-    availableLabel = "Available for work"
+    # focus = "Currently focused on Hugo themes & developer experience."
+    available = false
+    availableLabel = ""
 
     nowLabel = "Quick Facts"
     nowIntro = "Right now I'm mainly:"
@@ -211,34 +171,29 @@ theme = "minimal-black"
       "Writing about web performance"
     ]
 
-    [params.hero.primary]
-      label = "View Projects"
-      href = "/projects/"
-
-    [params.hero.secondary]
-      label = "Read the Blog"
-      href = "/blog/"
-
   # Icon Libraries
   [params.icons]
     useFontAwesome = true
     useDevicon = true
 
-  # Social Links
-  [[params.social]]
-    label = "GitLab"
-    url = "https://gitlab.com/jimchr12"
-    icon = "fa-brands fa-gitlab"
+  ############################################################################################################
+  # SOCIAL 
+  ############################################################################################################
+  [[params.hero.socials]]
+    label = "GitHub"
+    url = "https://github.com/DavideDeZuane"
+    icon = "fa-brands fa-github"
+ 
+  [[params.hero.socials]]
+    label = "Google Scholar"
+    url = "https://scholar.google.com/citations?user=_nMDRMMAAAAJ&hl=en"
+    icon = "fa-brands fa-google-scholar"
+ 
+  [[params.hero.socials]]
+    label = "ORCID"
+    url = "https://orcid.org/0009-0004-3379-0704"
+    icon = "fa-brands fa-orcid" # non usata, l'icona ORCID è SVG inline nel partial
 
-  [[params.social]]
-    label = "LinkedIn"
-    url = "https://www.linkedin.com/in/jimchristopoulos-542512221/"
-    icon = "fa-brands fa-linkedin-in"
-
-  [[params.social]]
-    label = "Email"
-    url = "mailto:you@example.com"
-    icon = "fa-regular fa-envelope"
 
   # Analytics Configuration
   [params.analytics]
@@ -275,29 +230,20 @@ theme = "minimal-black"
       icon = "fa-solid fa-house"
 
   [[menu.main]]
-    name = "About"
-    pageRef = "about"
-    url = "/about/"
+    name = "Research"
+    pageRef = "research"
+    url = "/research/"
     weight = 2
-    identifier = "about"
+    identifier = "research"
     [menu.main.params]
-      icon = "fa-regular fa-user"
+      icon = "fa-solid fa-book"
 
   [[menu.main]]
-    name = "About Alt"
-    pageRef = "about-alternative"
-    url = "/about-alternative/"
-    weight = 2
-    identifier = "about-alternative"
-    [menu.main.params]
-      icon = "fa-solid fa-user"
-
-  [[menu.main]]
-    name = "Projects"
-    pageRef = "projects"
+    name = "CV"
+    pageRef = "cv"
     url = "/projects/"
     weight = 3
-    identifier = "projects"
+    identifier = "cv"
     [menu.main.params]
       icon = "fa-regular fa-folder-open"
 

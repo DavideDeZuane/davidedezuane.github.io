@@ -114,16 +114,12 @@
         
         <a href="/" class="flex items-center gap-2">
           
-            <div class="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-surface">
-              <img
-                src="/images/logo.png"
-                alt="Davide De Zuane"
-                class="h-full w-full object-cover"
-              >
+            <div class="logo-badge">
+              PO
             </div>
           
           <span class="text-xs font-semibold tracking-wide">
-            Davide De Zuane
+            Portfolio
           </span>
         </a>
 
@@ -140,22 +136,13 @@
                 <span>Home</span>
               </a>
               <a
-                href="/about/"
+                href="/research/"
                 class="nav-link link-underline flex items-center gap-1 "
               >
                 
-                  <i class="fa-regular fa-user text-[0.75rem]"></i>
+                  <i class="fa-solid fa-book text-[0.75rem]"></i>
                 
-                <span>About</span>
-              </a>
-              <a
-                href="/about-alternative/"
-                class="nav-link link-underline flex items-center gap-1 "
-              >
-                
-                  <i class="fa-solid fa-user text-[0.75rem]"></i>
-                
-                <span>About Alt</span>
+                <span>Research</span>
               </a>
               <a
                 href="/projects/"
@@ -164,7 +151,7 @@
                 
                   <i class="fa-regular fa-folder-open text-[0.75rem]"></i>
                 
-                <span>Projects</span>
+                <span>CV</span>
               </a>
               <a
                 href="/blog/"
@@ -255,25 +242,18 @@
           <span>Home</span>
         </a>
       
-        <a href="/about/" class="flex items-center gap-2 py-1.5">
+        <a href="/research/" class="flex items-center gap-2 py-1.5">
           
-            <i class="fa-regular fa-user text-[0.8rem]"></i>
+            <i class="fa-solid fa-book text-[0.8rem]"></i>
           
-          <span>About</span>
-        </a>
-      
-        <a href="/about-alternative/" class="flex items-center gap-2 py-1.5">
-          
-            <i class="fa-solid fa-user text-[0.8rem]"></i>
-          
-          <span>About Alt</span>
+          <span>Research</span>
         </a>
       
         <a href="/projects/" class="flex items-center gap-2 py-1.5">
           
             <i class="fa-regular fa-folder-open text-[0.8rem]"></i>
           
-          <span>Projects</span>
+          <span>CV</span>
         </a>
       
         <a href="/blog/" class="flex items-center gap-2 py-1.5">
@@ -296,79 +276,88 @@
       
 
       
-        <div class="grid gap-8 md:grid-cols-[minmax(0,2fr)_minmax(0,1.2fr)] items-start">
-  <div class="space-y-5 animate-fade-up">
-    
-    <div class="flex flex-wrap items-center gap-4">
-      
-        <p class="eyebrow font-medium text-sm text-accent">Software Engineer</p>
-      
+        <div class="flex flex-col items-center text-center gap-14 animate-fade-up max-w-2xl mx-auto">
 
+  
+  <div class="order-first mb-4 shrink-0">
+    <div class="h-16 w-16 sm:h-40 sm:w-40 aspect-square shrink-0 overflow-hidden rounded-full bg-surface shadow-md flex items-center justify-center">
       
-        <span class="badge-available px-3">
-          <span class="h-1.5 w-1.5 rounded-full bg-white/95"></span>
-          <span>Available for work</span>
-        </span>
-      
-    </div>
-
-    <div class="space-y-2">
-      <h1 class="heading-page text-3xl sm:text-4xl">
-        Hi, I&#39;m Your Name or your interesting title.
-      </h1>
-      
-        <p class="text-sm font-medium text-muted">
-          Subtitle for title with role perspective
-        </p>
-      
-    </div>
-
-    
-      <p class="max-w-xl text-sm text-muted">
-        You can write your summary to be displayed here.
-      </p>
-    
-
-    
-    <div class="mt-3 flex flex-wrap gap-2 text-[0.7rem] text-muted">
-      
-        <span class="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface/90 px-3 py-1.5">
-          <i class="fa-solid fa-location-dot text-[0.8rem]"></i>
-          <span class="font-medium">City, Country</span>
-        </span>
-      
-
-      
-        <span class="inline-flex items-center gap-1.5 rounded-full border border-border bg-surface/80 px-3 py-1.5">
-          <i class="fa-regular fa-circle-dot text-[0.8rem]"></i>
-          <span>Currently focused on Hugo themes &amp; developer experience.</span>
-        </span>
-      
-    </div>
-
-    
-    
-
-    
-    <div class="mt-4 flex flex-wrap items-center gap-3">
-      
-        <a href="/projects/" class="btn-primary">
-          View Projects
-        </a>
-      
-
-      
-        <a href="/blog/" class="btn-ghost link-underline">
-          Read the Blog
-        </a>
+        <i class="fa-solid fa-user text-3xl sm:text-4xl text-muted"></i>
       
     </div>
   </div>
 
-  
-  
-</div>
 
+  <div class="space-y-2 mb-2 mt-6">
+    <h1 class="heading-page text-3xl sm:text-4xl">
+      Hi, I&#39;m Davide De Zuane.
+    </h1>
+  </div>
+
+  
+    <p class="max-w-xl text-lg text-muted text-left">
+      PhD Candidate in Cybersecurity @ IMT Lucca
+    </p>
+  
+
+  
+
+  
+  
+    <div class="flex flex-wrap items-center justify-center gap-3 mt-4">
+      
+      
+      
+      
+      
+        <a
+          href="https://github.com/DavideDeZuane"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="color: #181717;"
+          aria-label="GitHub"
+          class="flex h-12 w-12 items-center justify-center rounded-full text-muted transition-colors hover:text-accent hover:bg-surface/80"
+        >
+            <i class="fa-brands fa-github text-3xl"></i>
+        </a>
+      
+      
+      
+      
+      
+        <a
+          href="https://scholar.google.com/citations?user=_nMDRMMAAAAJ&amp;hl=en"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="color: #4285F4;"
+          aria-label="Google Scholar"
+          class="flex h-12 w-12 items-center justify-center rounded-full text-muted transition-colors hover:text-accent hover:bg-surface/80"
+        >
+            <i class="fa-brands fa-google-scholar text-3xl"></i>
+        </a>
+      
+      
+      
+      
+      
+        <a
+          href="https://orcid.org/0009-0004-3379-0704"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="color: #A6CE39;"
+          aria-label="ORCID"
+          class="flex h-12 w-12 items-center justify-center rounded-full text-muted transition-colors hover:text-accent hover:bg-surface/80"
+        >
+            <i class="fa-brands fa-orcid text-3xl"></i>
+        </a>
+      
+    </div>
+  
+
+  
+  
+
+</div>
       
         
   <div class="space-y-4">
@@ -416,23 +405,9 @@
           
             <div class="tech-strip-item">
               
-                <i class="devicon-java-plain tech-icon"></i>
-              
-              <span class="font-medium">Java</span>
-            </div>
-          
-            <div class="tech-strip-item">
-              
                 <i class="devicon-spring-plain tech-icon"></i>
               
               <span class="font-medium">Spring</span>
-            </div>
-          
-            <div class="tech-strip-item">
-              
-                <i class="devicon-vaadin-plain tech-icon"></i>
-              
-              <span class="font-medium">Vaadin</span>
             </div>
           
             <div class="tech-strip-item">
@@ -466,23 +441,9 @@
           
             <div class="tech-strip-item" aria-hidden="true">
               
-                <i class="devicon-java-plain tech-icon"></i>
-              
-              <span class="font-medium">Java</span>
-            </div>
-          
-            <div class="tech-strip-item" aria-hidden="true">
-              
                 <i class="devicon-spring-plain tech-icon"></i>
               
               <span class="font-medium">Spring</span>
-            </div>
-          
-            <div class="tech-strip-item" aria-hidden="true">
-              
-                <i class="devicon-vaadin-plain tech-icon"></i>
-              
-              <span class="font-medium">Vaadin</span>
             </div>
           
             <div class="tech-strip-item" aria-hidden="true">
@@ -514,20 +475,6 @@
             
               <div class="tech-strip-item">
                 
-                  <i class="devicon-postgresql-plain tech-icon"></i>
-                
-                <span class="font-medium">PostgreSQL</span>
-              </div>
-            
-              <div class="tech-strip-item">
-                
-                  <i class="devicon-mongodb-plain tech-icon"></i>
-                
-                <span class="font-medium">MongoDB</span>
-              </div>
-            
-              <div class="tech-strip-item">
-                
                   <i class="devicon-git-plain tech-icon"></i>
                 
                 <span class="font-medium">Git</span>
@@ -538,20 +485,6 @@
                   <i class="devicon-hugo-plain tech-icon"></i>
                 
                 <span class="font-medium">Hugo</span>
-              </div>
-            
-              <div class="tech-strip-item">
-                
-                  <i class="devicon-jenkins-plain tech-icon"></i>
-                
-                <span class="font-medium">Jenkins</span>
-              </div>
-            
-              <div class="tech-strip-item">
-                
-                  <i class="devicon-jetbrains-plain tech-icon"></i>
-                
-                <span class="font-medium">JetBrains</span>
               </div>
             
               <div class="tech-strip-item">
@@ -570,37 +503,9 @@
             
               <div class="tech-strip-item">
                 
-                  <i class="devicon-liquibase-plain tech-icon"></i>
-                
-                <span class="font-medium">Liquibase</span>
-              </div>
-            
-              <div class="tech-strip-item">
-                
                   <i class="devicon-markdown-original tech-icon"></i>
                 
                 <span class="font-medium">Markdown</span>
-              </div>
-            
-              <div class="tech-strip-item">
-                
-                  <i class="devicon-yaml-plain tech-icon"></i>
-                
-                <span class="font-medium">YAML</span>
-              </div>
-            
-              <div class="tech-strip-item">
-                
-                  <i class="devicon-wordpress-plain tech-icon"></i>
-                
-                <span class="font-medium">Wordpress</span>
-              </div>
-            
-              <div class="tech-strip-item">
-                
-                  <i class="devicon-woocommerce-plain tech-icon"></i>
-                
-                <span class="font-medium">WooCommerce</span>
               </div>
             
               <div class="tech-strip-item">
@@ -620,20 +525,6 @@
             
               <div class="tech-strip-item" aria-hidden="true">
                 
-                  <i class="devicon-postgresql-plain tech-icon"></i>
-                
-                <span class="font-medium">PostgreSQL</span>
-              </div>
-            
-              <div class="tech-strip-item" aria-hidden="true">
-                
-                  <i class="devicon-mongodb-plain tech-icon"></i>
-                
-                <span class="font-medium">MongoDB</span>
-              </div>
-            
-              <div class="tech-strip-item" aria-hidden="true">
-                
                   <i class="devicon-git-plain tech-icon"></i>
                 
                 <span class="font-medium">Git</span>
@@ -644,20 +535,6 @@
                   <i class="devicon-hugo-plain tech-icon"></i>
                 
                 <span class="font-medium">Hugo</span>
-              </div>
-            
-              <div class="tech-strip-item" aria-hidden="true">
-                
-                  <i class="devicon-jenkins-plain tech-icon"></i>
-                
-                <span class="font-medium">Jenkins</span>
-              </div>
-            
-              <div class="tech-strip-item" aria-hidden="true">
-                
-                  <i class="devicon-jetbrains-plain tech-icon"></i>
-                
-                <span class="font-medium">JetBrains</span>
               </div>
             
               <div class="tech-strip-item" aria-hidden="true">
@@ -676,37 +553,9 @@
             
               <div class="tech-strip-item" aria-hidden="true">
                 
-                  <i class="devicon-liquibase-plain tech-icon"></i>
-                
-                <span class="font-medium">Liquibase</span>
-              </div>
-            
-              <div class="tech-strip-item" aria-hidden="true">
-                
                   <i class="devicon-markdown-original tech-icon"></i>
                 
                 <span class="font-medium">Markdown</span>
-              </div>
-            
-              <div class="tech-strip-item" aria-hidden="true">
-                
-                  <i class="devicon-yaml-plain tech-icon"></i>
-                
-                <span class="font-medium">YAML</span>
-              </div>
-            
-              <div class="tech-strip-item" aria-hidden="true">
-                
-                  <i class="devicon-wordpress-plain tech-icon"></i>
-                
-                <span class="font-medium">Wordpress</span>
-              </div>
-            
-              <div class="tech-strip-item" aria-hidden="true">
-                
-                  <i class="devicon-woocommerce-plain tech-icon"></i>
-                
-                <span class="font-medium">WooCommerce</span>
               </div>
             
               <div class="tech-strip-item" aria-hidden="true">
@@ -844,40 +693,6 @@
         </div>
 
         
-        
-        <div class="footer-links">
-          
-          <a
-            href="https://gitlab.com/jimchr12"
-            class="footer-link footer-float link-underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i class="fa-brands fa-gitlab text-[0.8rem]"></i>
-            <span>GitLab</span>
-          </a>
-          
-          <a
-            href="https://www.linkedin.com/in/jimchristopoulos-542512221/"
-            class="footer-link footer-float link-underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i class="fa-brands fa-linkedin-in text-[0.8rem]"></i>
-            <span>LinkedIn</span>
-          </a>
-          
-          <a
-            href="mailto:you@example.com"
-            class="footer-link footer-float link-underline"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <i class="fa-regular fa-envelope text-[0.8rem]"></i>
-            <span>Email</span>
-          </a>
-          
-        </div>
         
       </div>
     </div>
