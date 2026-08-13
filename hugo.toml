@@ -1,6 +1,6 @@
 baseURL = 'https://davidedezuane.github.io'
 languageCode = 'en-us'
-title = 'Davide De Zuane'
+title = 'Portfolio'
 theme = "minimal-black"
 
 # Enable search index generation and web app manifest
@@ -194,31 +194,9 @@ theme = "minimal-black"
     url = "https://orcid.org/0009-0004-3379-0704"
     icon = "fa-brands fa-orcid" # non usata, l'icona ORCID è SVG inline nel partial
 
-
-  # Analytics Configuration
-  [params.analytics]
-    # Google Analytics (GA4)
-    # googleAnalytics = "G-XXXXXXXXXX"
-
-    # Plausible Analytics (privacy-friendly)
-    # [params.analytics.plausible]
-    #   enabled = true
-    #   domain = "yourdomain.com"
-    #   scriptUrl = "https://plausible.io/js/script.js"
-
-    # Umami Analytics (self-hosted option)
-    # [params.analytics.umami]
-    #   enabled = true
-    #   scriptUrl = "https://analytics.yourdomain.com/script.js"
-    #   websiteId = "your-website-id"
-
-    # Fathom Analytics
-    # [params.analytics.fathom]
-    #   enabled = true
-    #   scriptUrl = "https://cdn.usefathom.com/script.js"
-    #   siteId = "YOUR-SITE-ID"
-
-# Navigation Menu
+############################################################################################################
+# NAVIGATION MENU
+############################################################################################################
 [menu]
   [[menu.main]]
     name = "Home"
@@ -236,7 +214,7 @@ theme = "minimal-black"
     weight = 2
     identifier = "research"
     [menu.main.params]
-      icon = "fa-solid fa-book"
+      icon = "fa-solid fa-book-open"
 
   [[menu.main]]
     name = "CV"

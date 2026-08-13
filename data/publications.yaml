@@ -1,0 +1,30 @@
+# themes/minimal-black/data/publications.yaml (oppure data/publications.yaml nella root, se preferisci)
+#
+# Aggiungi una voce per ogni pubblicazione. Campi:
+# - title:  titolo del paper (obbligatorio)
+# - authors: elenco autori come stringa, es. "M. Rossi, D. De Zuane, A. Bianchi"
+# - venue:  nome di rivista/conferenza dove è stato pubblicato
+# - year:   anno di pubblicazione (numero)
+# - type:   etichetta breve mostrata come badge, es. "Journal", "Conference Paper", "Preprint"
+# - link:   URL a DOI / pagina della pubblicazione (opzionale, se assente non mostra il bottone)
+
+- title: "Implementation and transition to post-quantum cryptography of the Minimal IKE protocol"
+  authors: "D. De Zuane, P. Santini, M. Baldi"
+  venue: "IEEE International Conference on Communications (ICC) 2026"
+  year: 2026
+  type: "Conference Paper"
+  link: "https://arxiv.org/abs/2602.21737"
+
+- title: "Flip a Failure into a Success: Improved Bit Flipping Decoding for QC-MDPC Codes"
+  authors: "P. Santini, D. De Zuane, A. Baldelli, M. Baldi"
+  venue: "IACR Cryptology ePrint Archive"
+  year: 2026
+  type: "Preprint"
+  link: "https://eprint.iacr.org/2026/1616"
+
+- title: "SPECK: Signatures from Permutation Equivalence of Codes and Kernels"
+  authors: "M. Baldi, M. Battagliola, R. El Mechri, P. Santini, R. Schiavoni, D. De Zuane"
+  venue: "IACR Cryptology ePrint Archive"
+  year: 2025
+  type: "Preprint"
+  link: "https://eprint.iacr.org/2025/923"
