@@ -1,0 +1,72 @@
+{{- $hero := .Site.Params.hero -}}
+
+<div class="flex flex-col items-center text-center gap-14 animate-fade-up max-w-2xl mx-auto">
+
+  <!-- Avatar: always shown. Uses your photo if set, otherwise a placeholder -->
+  <div class="order-first mb-4 shrink-0">
+    <div class="h-16 w-16 sm:h-40 sm:w-40 aspect-square shrink-0 overflow-hidden rounded-full bg-surface shadow-md flex items-center justify-center">
+      {{ with $hero.avatar }}
+        <img
+          src="{{ . | relURL }}"
+          alt="{{ $hero.title | default $.Site.Title }}"
+          class="h-50 w-50 object-cover block"
+        />
+      {{ else }}
+        <i class="fa-solid fa-user text-3xl sm:text-4xl text-muted"></i>
+      {{ end }}
+    </div>
+  </div>
+
+
+  <div class="space-y-2 mb-2 mt-6">
+    <h1 class="heading-page text-3xl sm:text-4xl">
+      {{ default "Hi, I’m Your Name." $hero.title }}
+    </h1>
+  </div>
+
+  {{ with $hero.summary }}
+    <p class="max-w-xl text-lg text-muted text-left">
+      {{ . }}
+    </p>
+  {{ end }}
+
+  {{ with $hero.role }}
+    <p class="text-md font-medium text-muted">
+      {{ . }}
+    </p>
+  {{ end }}
+
+  <!-- Academic / social links -->
+  {{ with $hero.socials }}
+    <div class="flex flex-wrap items-center justify-center gap-3 mt-4">
+      {{ range . }}
+      {{ $brandColor := "" }}
+      {{ if eq .label "GitHub" }}{{ $brandColor = "#181717" }}{{ end }}
+      {{ if eq .label "Google Scholar" }}{{ $brandColor = "#4285F4" }}{{ end }}
+      {{ if eq .label "ORCID" }}{{ $brandColor = "#A6CE39" }}{{ end }}
+        <a
+          href="{{ .url }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          style="color: {{ $brandColor }};"
+          aria-label="{{ .label }}"
+          class="flex h-12 w-12 items-center justify-center rounded-full text-muted transition-colors hover:text-accent hover:bg-surface/80"
+        >
+            <i class="{{ .icon }} text-3xl"></i>
+        </a>
+      {{ end }}
+    </div>
+  {{ end }}
+
+  <!-- Optional highlight pills -->
+  {{ with $hero.highlights }}
+    <div class="flex flex-wrap justify-center gap-2">
+      {{ range . }}
+        <span class="inline-flex items-center rounded-full border border-border bg-surface/80 px-3 py-1 text-[0.7rem] text-muted">
+          {{ .label }}
+        </span>
+      {{ end }}
+    </div>
+  {{ end }}
+
+</div>
