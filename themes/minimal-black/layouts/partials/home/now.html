@@ -4,8 +4,7 @@
 {{ if $home.showNowSection }}
   <div class="space-y-4">
     <div class="space-y-3">
-      <h2 class="heading-section">{{ default "Now" $hero.nowLabel }}</h2>
-      <div class="card card-pad text-xs text-muted">
+      <div class="card card-pad text-md text-muted">
         {{ with $hero.nowIntro }}
           <p class="mb-2">{{ . }}</p>
         {{ end }}
