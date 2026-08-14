@@ -7,27 +7,8 @@
     <!-- Floating nav container -->
     <div class="nav-shell">
       <div class="nav-inner">
-        <!-- Brand: logo or monogram, always links to root -->
-        <a href="{{ "/" | relURL }}" class="flex items-center gap-2">
-          {{ with .Site.Params.logo }}
-            <div class="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-surface">
-              <img
-                src="{{ . | relURL }}"
-                alt="{{ $brand }}"
-                class="h-full w-full object-cover"
-              >
-            </div>
-          {{ else }}
-            <div class="logo-badge">
-              {{ $mono }}
-            </div>
-          {{ end }}
-          <span class="text-xs font-semibold tracking-wide">
-            {{ $brand }}
-          </span>
-        </a>
 
-        <div class="flex items-center gap-2">
+        <div class="flex w-full items-center gap-2 justify-between ">
           <!-- Desktop nav (configurable) -->
           <nav class="hidden items-center gap-5 md:flex">
             {{- $current := . -}}
@@ -43,10 +24,6 @@
               </a>
             {{- end }}
           </nav>
-
-          <!-- Theme toggle, sized to match nav -->
-          {{ partial "dark-toggle.html" . }}
-
           <!-- Mobile menu button -->
           <button
             type="button"
@@ -62,6 +39,9 @@
               <line x1="4" y1="18" x2="20" y2="18" />
             </svg>
           </button>
+          <div class="ml-auto">
+            {{ partial "dark-toggle.html" . }}
+          </div>
         </div>
       </div>
     </div>

@@ -110,19 +110,8 @@
     
     <div class="nav-shell">
       <div class="nav-inner">
-        
-        <a href="/" class="flex items-center gap-2">
-          
-            <div class="logo-badge">
-              PO
-            </div>
-          
-          <span class="text-xs font-semibold tracking-wide">
-            Portfolio
-          </span>
-        </a>
 
-        <div class="flex items-center gap-2">
+        <div class="flex w-full items-center gap-2 justify-between ">
           
           <nav class="hidden items-center gap-5 md:flex">
               <a
@@ -144,9 +133,23 @@
                 <span>Research</span>
               </a>
           </nav>
-
           
           <button
+            type="button"
+            class="ml-1 inline-flex items-center justify-center rounded-full border border-border bg-bg p-2 text-muted shadow-sm hover:text-accent md:hidden"
+            aria-label="Toggle navigation"
+            data-mobile-nav-toggle
+          >
+            <span class="sr-only">Open navigation</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" y1="6" x2="20" y2="6" />
+              <line x1="4" y1="12" x2="20" y2="12" />
+              <line x1="4" y1="18" x2="20" y2="18" />
+            </svg>
+          </button>
+          <div class="ml-auto">
+            <button
   type="button"
   class="theme-toggle"
   aria-label="Toggle dark mode"
@@ -188,22 +191,7 @@
   </span>
 </button>
 
-
-          
-          <button
-            type="button"
-            class="ml-1 inline-flex items-center justify-center rounded-full border border-border bg-bg p-2 text-muted shadow-sm hover:text-accent md:hidden"
-            aria-label="Toggle navigation"
-            data-mobile-nav-toggle
-          >
-            <span class="sr-only">Open navigation</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="4" y1="6" x2="20" y2="6" />
-              <line x1="4" y1="12" x2="20" y2="12" />
-              <line x1="4" y1="18" x2="20" y2="18" />
-            </svg>
-          </button>
+          </div>
         </div>
       </div>
     </div>

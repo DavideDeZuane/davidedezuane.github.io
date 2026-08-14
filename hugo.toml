@@ -170,12 +170,10 @@ theme = "minimal-black"
     available = false
     availableLabel = ""
 
-    nowLabel = "Quick Facts"
-    nowIntro = "Right now I'm mainly:"
+    nowIntro = "Right now I'm a second year PhD candidate:"
     now = [
-      "Building minimal Hugo themes",
-      "Exploring dark-mode design patterns",
-      "Writing about web performance"
+      "Implementing Cryptographic primitives",
+      "Transition to Post-Quantum Cryptography of the main network security protocols "
     ]
 
   # Icon Libraries
