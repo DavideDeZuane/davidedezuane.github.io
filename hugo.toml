@@ -18,6 +18,14 @@ theme = "minimal-black"
   brand = ""
   description = "A minimal, dark-mode first personal site, or whatever else you want it to be about"
 
+
+  ################################################################################################################
+  # Intro for each page
+  ################################################################################################################
+  researchIntro = "Collection of main pubblications and all topics"
+  projectsIntro = "Selected projects to display list." # Can be empty
+  blogIntro = "" # Can be empty
+
   # Favicon - Place your favicon files in /static/ directory
   # Supported formats: .ico, .png, .svg
   favicon = "icons/favicon.svg"
@@ -26,9 +34,6 @@ theme = "minimal-black"
   # Logo (optional)
   logo = ""
 
-  # Project and blog intro text
-  projectsIntro = "Selected projects to display list." # Can be empty
-  blogIntro = "" # Can be empty
 
   # Web App Manifest Configuration (PWA support)
   [params.manifest]
@@ -43,6 +48,7 @@ theme = "minimal-black"
     #   sizes = "192x192"
     #   type = "image/png"
     #   purpose = "any maskable"
+
 
   # Theme Configuration
   [params.theme]
@@ -160,15 +166,10 @@ theme = "minimal-black"
 
   # Hero Section Configuration
   [params.hero]
-    #badge = "PhD Student"
     title = "Hi, I'm Davide De Zuane."
-    role = ""
     summary = "PhD Candidate in Cybersecurity @ IMT Lucca"
     avatar = "images/puck-fun.jpeg"  # Optional: 400x400px recommended
     location = "Ancona, Italy"
-    # focus = "Currently focused on Hugo themes & developer experience."
-    available = false
-    availableLabel = ""
 
     nowIntro = "Right now I'm a second year PhD candidate:"
     now = [
