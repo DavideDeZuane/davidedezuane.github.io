@@ -7,10 +7,6 @@
           <p class="max-w-xl text-sm text-muted">
             {{ . }}
           </p>
-        {{ else }}
-          <p class="max-w-xl text-sm text-muted">
-            Publications, preprints, and talks from my work in post-quantum cryptography.
-          </p>
         {{ end }}
       </header>
 
@@ -19,23 +15,24 @@
 
       <!-- Publications -->
       {{ if $publications }}
-        <div class="space-y-4">
-          <h2 class="heading-page text-lg sm:text-xl">Publications</h2>
+        <div class="space-y-2">
+        <h2 class="text-lg font-bold"><i class="fa-solid fa-book text-base"></i> Publications</h2>
           <div class="grid gap-4 md:grid-cols-1">
             {{ range sort $publications "year" "desc" }}
               <div class="card card-pad space-y-2 border-l-2 border-l-accent/50 transition-all duration-200 hover:border-l-accent hover:shadow-lg hover:-translate-y-0.5">
                 <div class="flex items-start justify-between gap-3">
                   <h3 class="text-md font-semibold leading-snug">{{ .title }}</h3>
                 </div>
-                <p class="text-sm text-muted">{{ .authors }}</p>
+                {{ $authorsHighlighted := replace .authors "D. De Zuane" "<span class=\"underline font-medium text-text\">D. De Zuane</span>" }}
+                <p class="text-sm text-muted">{{ $authorsHighlighted | safeHTML }}</p>
                 <p class="flex items-center gap-1 text-sm text-muted">
                   <i class="fa-solid fa-book-open text-[0.65rem] opacity-70"></i>
                   <span class="italic">{{ .venue }}</span> · {{ .year }}
                 </p>
                 {{ with .link }}
-                <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-sm px-3 py-1">
+                <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-sm py-1 inline-flex items-center gap-1.5">
                     <i class="fa-solid fa-file-lines text-white"></i>
-                    View paper
+                    Paper
                   </a>
                 {{ end }}
                 {{ with .repo }}
@@ -83,6 +80,40 @@
                 {{ end }}
               </div>
             {{ end }}
+          </div>
+        </div>
+      {{ end }}
+
+      {{ $service := .Site.Data.academicService }}
+      {{ if $service }}
+        <div class="space-y-4">
+          <h2 class="text-lg font-bold gap-2">
+            <i class="fa-solid fa-handshake text-base"></i>
+            Academic Service
+          </h2>
+          <div class="grid gap-4 md:grid-cols-1">
+            {{ range sort $service "year" "desc" }}
+            <div class="card card-pad space-y-2 border-l-2 border-l-accent/50 transition-all duration-200 hover:border-l-accent hover:shadow-lg hover:-translate-y-0.5">
+              <h3 class="text-md font-semibold leading-snug">{{ .event }}</h3>
+              {{ with .role }}
+                <span class="inline-flex w-fit items-center gap-1.5 rounded-full bg-accent/10 px-2.5 py-1 text-[0.65rem] font-medium text-md">
+                  <i class="fa-solid fa-clipboard-check text-[0.65rem]"></i>
+                  {{ . }}
+                </span>
+              {{ end }}
+              <p class="flex items-center gap-1.5 text-xs text-muted">
+                <i class="fa-regular fa-calendar text-[0.65rem] opacity-70"></i>
+                {{ .year }}
+              </p>
+              {{ with .link }}
+                <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1.5 text-xs font-medium text-white transition-opacity hover:opacity-85">
+                  <i class="fa-solid fa-arrow-up-right-from-square text-[0.7rem]"></i>
+                  <span class="hover:underline">Details</span>
+                  <i class="fa-solid fa-arrow-right text-[0.7rem]"></i>
+                </a>
+              {{ end }}
+            </div>
+          {{ end }}
           </div>
         </div>
       {{ end }}

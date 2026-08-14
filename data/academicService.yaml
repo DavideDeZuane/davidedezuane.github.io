@@ -1,0 +1,13 @@
+# data/academicService.yaml
+#
+# Aggiungi una voce per ogni ruolo di servizio accademico (TPC, revisore, organizzatore, ecc.). Campi:
+# - role:  ruolo ricoperto, es. "TPC Member", "Reviewer", "Session Chair"
+# - event: nome della conferenza/rivista/evento
+# - year:  anno (numero, usato per l'ordinamento)
+# - link:  URL alla pagina della conferenza/comitato (opzionale)
+
+- role: "TPC Member"
+  event: "6th Workshop on Enabling Security, Trust, and Privacy in 6G Wireless Systems"
+  year: 2026
+  link: "https://icc2026.ieee-icc.org/workshop/ws03-6th-workshop-enabling-security-trust-and-privacy-6g-wireless-systems"
+
