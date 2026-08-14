@@ -280,9 +280,27 @@
 
   
   <div class="order-first mb-4 shrink-0">
-    <div class="h-16 w-16 sm:h-40 sm:w-40 aspect-square shrink-0 overflow-hidden rounded-full bg-surface shadow-md flex items-center justify-center">
+    <div class="h-16 w-16 sm:h-40 sm:w-40 aspect-square shrink-0 overflow-hidden rounded-full bg-surface shadow-md flex items-center justify-center"
+    style="
+        width: 160px;
+        height: 160px;
+        border-radius: 9999px;
+        overflow: hidden;
+        background-color: var(--color-surface);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      "
+    
+    >
       
-        <i class="fa-solid fa-user text-3xl sm:text-4xl text-muted"></i>
+        <img
+          src="/images/puck-fun.jpeg"
+          alt="Hi, I&#39;m Davide De Zuane."
+          class="h-full w-full object-cover block"
+        />
       
     </div>
   </div>
