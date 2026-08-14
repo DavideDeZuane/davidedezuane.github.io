@@ -38,6 +38,7 @@
   year: 2026
   type: "Preprint"
   link: "https://eprint.iacr.org/2026/1616"
+  repo: "https://github.com/secomms/BF_near_codewords"
 
 - title: "SPECK: Signatures from Permutation Equivalence of Codes and Kernels"
   authors: "M. Baldi, M. Battagliola, R. El Mechri, P. Santini, R. Schiavoni, D. De Zuane"
