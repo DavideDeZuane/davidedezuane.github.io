@@ -223,24 +223,6 @@ theme = "minimal-black"
     [menu.main.params]
       icon = "fa-solid fa-book-open"
 
-  [[menu.main]]
-    name = "CV"
-    pageRef = "cv"
-    url = "/projects/"
-    weight = 3
-    identifier = "cv"
-    [menu.main.params]
-      icon = "fa-regular fa-folder-open"
-
-  [[menu.main]]
-    name = "Blog"
-    pageRef = "blog"
-    url = "/blog/"
-    weight = 4
-    identifier = "blog"
-    [menu.main.params]
-      icon = "fa-regular fa-note-sticky"
-
 # Markup Configuration
 [markup]
   # Table of Contents
