@@ -1,0 +1,92 @@
+{{ define "main" }}
+  <section class="layout-page">
+    <div class="page-int section-stack">
+      <header class="space-y-2">
+        <h1 class="heading-page text-2xl sm:text-3xl">Research</h1>
+        {{ with .Site.Params.researchIntro }}
+          <p class="max-w-xl text-sm text-muted">
+            {{ . }}
+          </p>
+        {{ else }}
+          <p class="max-w-xl text-sm text-muted">
+            Publications, preprints, and talks from my work in post-quantum cryptography.
+          </p>
+        {{ end }}
+      </header>
+
+      {{ $publications := .Site.Data.publications }}
+      {{ $conferences := .Site.Data.conferences }}
+
+      <!-- Publications -->
+      {{ if $publications }}
+        <div class="space-y-4">
+          <h2 class="heading-page text-lg sm:text-xl">Publications</h2>
+          <div class="grid gap-4 md:grid-cols-1">
+            {{ range sort $publications "year" "desc" }}
+              <div class="card card-pad space-y-2 border-l-2 border-l-accent/50 transition-all duration-200 hover:border-l-accent hover:shadow-lg hover:-translate-y-0.5">
+                <div class="flex items-start justify-between gap-3">
+                  <h3 class="text-md font-semibold leading-snug">{{ .title }}</h3>
+                </div>
+                <p class="text-sm text-muted">{{ .authors }}</p>
+                <p class="flex items-center gap-1 text-sm text-muted">
+                  <i class="fa-solid fa-book-open text-[0.65rem] opacity-70"></i>
+                  <span class="italic">{{ .venue }}</span> · {{ .year }}
+                </p>
+                {{ with .link }}
+                <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-sm">
+                    <i class="fa-solid fa-file-lines text-white"></i>
+                    View paper
+                  </a>
+                {{ end }}
+                {{ with .repo }}
+                <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-full bg-[#181717] px-3 py-1.5 text-xs font-medium text-white transition-opacity hover:opacity-85">
+                  <i class="fa-brands fa-github"></i>
+                  Code
+                </a>
+              {{ end }}
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
+
+      <!-- Conferences & Talks -->
+      {{ if $conferences }}
+        <div class="space-y-4">
+          <h2 class="heading-page text-lg sm:text-xl">Conferences &amp; Talks</h2>
+          <div class="grid gap-4 md:grid-cols-1">
+            {{ range sort $conferences "date" "desc" }}
+              <div class="card card-pad space-y-2 border-l-2 border-l-accent/50 transition-all duration-200 hover:border-l-accent hover:shadow-lg hover:-translate-y-0.5">
+                <div class="flex items-start justify-between gap-3">
+                  <h3 class="text-sm font-semibold leading-snug">{{ .title }}</h3>
+                  {{ with .type }}
+                    <span class="shrink-0 rounded-full bg-accent/10 px-2.5 py-1 text-[0.65rem] font-medium text-accent">
+                      {{ . }}
+                    </span>
+                  {{ end }}
+                </div>
+                <p class="flex items-center gap-1.5 text-xs text-muted">
+                  <i class="fa-solid fa-location-dot text-[0.65rem] opacity-70"></i>
+                  <span class="italic">{{ .event }}</span>{{ with .location }} · {{ . }}{{ end }}
+                </p>
+                {{ with .date }}
+                  <p class="flex items-center gap-1.5 text-xs text-muted">
+                    <i class="fa-regular fa-calendar text-[0.65rem] opacity-70"></i>
+                    {{ dateFormat "January 2006" . }}
+                  </p>
+                {{ end }}
+                {{ with .link }}
+                  <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 link-underline text-xs">
+                    <i class="fa-solid fa-file-lines"></i>
+                    View details
+                  </a>
+                {{ end }}
+              </div>
+            {{ end }}
+          </div>
+        </div>
+      {{ end }}
+
+    </div>
+  </section>
+{{ end }}

@@ -15,7 +15,7 @@ theme = "minimal-black"
   notAlternative = true
 
 [params]
-  brand = "Portfolio"
+  brand = ""
   description = "A minimal, dark-mode first personal site, or whatever else you want it to be about"
 
   # Favicon - Place your favicon files in /static/ directory
@@ -62,54 +62,61 @@ theme = "minimal-black"
     blogSubtitle = ""
     techMarqueeLabel = "Experienced In"
 
-    # Technology Stack Display
+    #################################################################
+    # TECH STACK 
+    #################################################################
     [[params.home.tech]]
-      label = "Python"
-      icon = "devicon-python-plain"
+      label = ""
+      icon = "devicon-linux-plain colored"          
 
     [[params.home.tech]]
-      label = "Spring"
-      icon = "devicon-spring-plain"  
+      label = ""
+      icon = "devicon-archlinux-plain "
 
     [[params.home.tech]]
-      label = "Debian"
-      icon = "devicon-debian-plain"
+      label = ""
+      icon = "devicon-debian-plain "
+    
+    [[params.home.tech]]
+      label = ""
+      icon = "devicon-proxmox-plain-wordmark "
+          
+    [[params.home.tech]]
+      label = ""
+      icon = "devicon-docker-plain "
 
     [[params.home.tech]]
-      label = "GitLab"
-      icon = "devicon-gitlab-plain"
+      label = ""
+      icon = "devicon-git-plain "
 
     [[params.home.tech]]
-      label = "Docker"
-      icon = "devicon-docker-plain"
+      label = ""
+      icon = "devicon-ansible-plain "
 
-    [[params.home.techReverse]]
-      label = "Git"
-      icon = "devicon-git-plain"
+    [[params.home.tech]]
+      label = ""
+      icon = "devicon-traefikproxy-plain" 
 
     [[params.home.techReverse]]
       label = "Hugo"
       icon = "devicon-hugo-plain"  
 
     [[params.home.techReverse]]
-      label = "Json"
-      icon = "devicon-json-plain" 
-
-    [[params.home.techReverse]]
-      label = "Linux"
-      icon = "devicon-linux-plain"          
+      label = "Bash"
+      icon = "devicon-bash-plain"  
 
     [[params.home.techReverse]]
       label = "Markdown"
-      icon = "devicon-markdown-original"  
+      icon = "devicon-markdown-original "  
 
     [[params.home.techReverse]]
-      label = "Traefik"
-      icon = "devicon-traefikproxy-plain" 
-
+      label = "Latex"
+      icon = "devicon-latex-original "  
+      
     [[params.home.techReverse]]
-      label = "pfSense"
-      icon = "devicon-pfsense-plain"       
+      label = "C"
+      icon = "devicon-c-plain "
+
 
   # About Page Alternative Layout Configuration - Optional
   [params.about.alt]

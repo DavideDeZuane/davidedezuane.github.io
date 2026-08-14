@@ -8,12 +8,29 @@
 # - type:   etichetta breve mostrata come badge, es. "Journal", "Conference Paper", "Preprint"
 # - link:   URL a DOI / pagina della pubblicazione (opzionale, se assente non mostra il bottone)
 
-- title: "Implementation and transition to post-quantum cryptography of the Minimal IKE protocol"
-  authors: "D. De Zuane, P. Santini, M. Baldi"
-  venue: "IEEE International Conference on Communications (ICC) 2026"
+
+- title: "Near-Codewords Aware Bit Flipping Decoding of QC-MDPC Codes"
+  authors: "A. Baldelli, M. Baldi, D. De Zuane, P. Santini"
+  venue: "IEEE International Symposium on Information Theory (ISIT)"
   year: 2026
   type: "Conference Paper"
-  link: "https://arxiv.org/abs/2602.21737"
+  link: "https://arxiv.org/abs/2604.18247"
+  repo: "https://github.com/secomms/BF_near_codewords"
+
+- title: "Efficient and Quantum-safe Internet Key Exchange Protocols for Satellite Communications"
+  authors: "D. De Zuane, M. Bald, P. Santini, G. Anchelergues, D. Romano, A. Cammarano, J. J. Grosso"
+  venue: "International Symposium on Local and Metropolitan Area Networks (LANMAN)"
+  year: 2026
+  type: "Conference Paper"
+  link: "https://arxiv.org/abs/2605.28660"
+
+- title: "Implementation and transition to post-quantum cryptography of the Minimal IKE protocol"
+  authors: "D. De Zuane, P. Santini, M. Baldi"
+  venue: "IEEE International Conference on Communications (ICC)"
+  year: 2026
+  type: "Conference Paper"
+  link: "https://ieeexplore.ieee.org/abstract/document/11587779?casa_token=S6madPvLTVcAAAAA:hmBVKFS6hhXae8QW9hGX5n6gS31WLlKbZmUTbPilcZQZo8V6k1-A4e4lYWdJVmL6em7lEGcZ"
+  repo: "https://github.com/secomms/colibri"
 
 - title: "Flip a Failure into a Success: Improved Bit Flipping Decoding for QC-MDPC Codes"
   authors: "P. Santini, D. De Zuane, A. Baldelli, M. Baldi"
