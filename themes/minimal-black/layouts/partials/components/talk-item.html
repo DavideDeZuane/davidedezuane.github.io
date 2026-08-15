@@ -1,0 +1,27 @@
+{{/*
+    components/talk-item.html
+    Renderizza una singola voce di talks.yaml.
+    Campi attesi: title, event, location, date, link
+  */}}
+  <div class="flex gap-3">
+    <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span>
+    <div class="flex-1 space-y-2">
+      <h3 class="text-md font-semibold leading-snug">{{ .title }}</h3>
+      <p class="flex items-center gap-1 text-sm text-muted">
+        <i class="fa-solid fa-location-dot text-[0.65rem] opacity-70"></i>
+        <span class="italic">{{ .event }}</span>{{ with .location }} · {{ . }}{{ end }}
+      </p>
+      {{ with .date }}
+        <p class="flex items-center gap-1 text-sm text-muted">
+          <i class="fa-regular fa-calendar text-[0.65rem] opacity-70"></i>
+          {{ dateFormat "January 2006" . }}
+        </p>
+      {{ end }}
+      {{ with .link }}
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-sm font-medium text-white transition-opacity hover:opacity-85">
+          <i class="fa-solid fa-link"></i>
+          Details
+        </a>
+      {{ end }}
+    </div>
+  </div>

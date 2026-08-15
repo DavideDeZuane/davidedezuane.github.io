@@ -1,0 +1,23 @@
+{{/*
+    components/service-item.html
+    Renderizza una singola voce di academicService.yaml.
+    Campi attesi: event, role, link
+  */}}
+  <div class="flex gap-3">
+    <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span>
+    <div class="flex-1 space-y-2">
+      <h3 class="text-md font-semibold leading-snug">{{ .event }}</h3>
+      {{ with .role }}
+        <p class="flex items-center gap-1 text-sm text-muted">
+          <i class="fa-solid fa-user text-[0.65rem] opacity-70"></i>
+          <span class="italic">{{ . }}</span>
+        </p>
+      {{ end }}
+      {{ with .link }}
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1 text-sm font-medium text-white transition-opacity hover:opacity-85">
+          <i class="fa-solid fa-link"></i>
+          Details
+        </a>
+      {{ end }}
+    </div>
+  </div>

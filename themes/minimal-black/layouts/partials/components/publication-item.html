@@ -1,0 +1,42 @@
+{{/*
+    components/publication-item.html
+    Renderizza una singola pubblicazione.
+    Uso: {{ partial "components/publication-item.html" . }} dentro un {{ range }} su publications.yaml
+*/}}
+
+<!-- ################################################## -->
+<!-- Main item                                          -->
+<!-- ################################################## -->
+<div class="flex gap-3">
+  <!-- Dot for the itemize-->
+  <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span>
+  <!-- Content -->
+  <div class="flex-1 space-y-2">
+
+    <!-- Title-->
+    <h3 class="text-md font-semibold leading-snug">{{ .title }}</h3>
+    <!-- Authors -->
+    {{ $authorsHighlighted := replace .authors "D. De Zuane" "<span class=\"underline font-medium text-text\">D. De Zuane</span>" }}
+    <p class="text-sm text-muted">{{ $authorsHighlighted | safeHTML }}</p>
+    <!-- Venue -->
+    <p class="flex items-center gap-1 text-sm text-muted">
+      <i class="fa-solid fa-book-open text-[0.65rem] opacity-70"></i>
+      <span class="italic">{{ .venue }}</span> · {{ .year }}
+    </p>
+    <!-- Link to Paper -->
+    {{ with .link }}
+    <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-sm py-1 inline-flex items-center gap-1.5 link-underline hover:text-accent">
+      <i class="fa-solid fa-file-lines text-white"></i>
+      Paper
+    </a>
+    {{ end }}
+    <!-- Link to Repo -->
+    {{ with .repo }}
+    <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-full link-underline hover:text-accent px-3 py-1 text-sm font-medium text-white transition-opacity hover:opacity-85">
+      <i class="fa-brands fa-github"></i>
+      Code
+    </a>
+    {{ end }}
+
+  </div>
+</div>

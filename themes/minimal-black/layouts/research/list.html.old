@@ -1,0 +1,108 @@
+{{ define "main" }}
+  <section class="layout-page">
+    <div class="page-int section-stack">
+      <header class="space-y-2">
+        <h1 class="heading-page text-2xl sm:text-3xl">Research</h1>
+        {{ with .Site.Params.researchIntro }} 
+          <p class="max-w-xl text-md text-muted mt-8">
+            {{ . }} 
+          </p>
+        {{ end }}
+      </header>
+
+      {{ $publications := .Site.Data.publications }}
+      {{ $service := .Site.Data.academicService }}
+
+      
+        <!-- ################################################################################# -->
+        <!-- Publications -->
+        <!-- ################################################################################# -->
+        {{ if $publications }}
+          <div class="space-y-2">
+              <details class="group card card-pad" open>
+                  <summary class="text-lg sm:text-xl flex w-full list-none items-center gap-2 cursor-pointer">
+                      <i class="fa-solid fa-book text-base"></i> 
+                      Publications
+                      <i class="fa-solid fa-chevron-down ml-auto text-xs text-muted transition-transform duration-200 group-open:rotate-180"></i>
+                  </summary>
+                  <div class="mt-4 card-pad space-y-6">
+                  {{ range sort $publications "year" "desc" }}
+                      <div class="flex gap-3">
+                          <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span>
+                          <div class="flex-1 space-y-2">
+                            <h3 class="text-md font-semibold leading-snug">{{ .title }}</h3>
+                            {{ $authorsHighlighted := replace .authors "D. De Zuane" "<span class=\"underline font-medium text-text\">D. De Zuane</span>" }}
+                            <p class="text-sm text-muted">{{ $authorsHighlighted | safeHTML }}</p>
+                            <p class="flex items-center gap-1 text-sm text-muted">
+                                <i class="fa-solid fa-book-open text-[0.65rem] opacity-70"></i>
+                                <span class="italic">{{ .venue }}</span> · {{ .year }}
+                            </p>
+                            {{ with .link }}
+                            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-sm py-1 inline-flex items-center gap-1.5 link-underline hover:text-accent">
+                                <i class="fa-solid fa-file-lines text-white"></i>
+                                Paper
+                            </a>
+                            {{ end }}
+                            {{ with .repo }}
+                            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-full link-underline hover:text-accent px-3 py-1 text-sm font-medium text-white transition-opacity hover:opacity-85">
+                                <i class="fa-brands fa-github"></i>
+                                Code
+                            </a>
+                            {{ end }}
+                          </div>
+                        </div>
+                    {{ end }}
+                </div>
+            </details>
+        </div>
+        {{ end }}
+
+
+      
+    <div class="space-y-2">
+        <details class="group card card-pad" open>
+            <summary class="text-lg sm:text-xl flex w-full list-none items-center gap-2 cursor-pointer">
+              <i class="fa-solid fa-microphone-lines text-base"></i> 
+              Talks 
+              <i class="fa-solid fa-chevron-down ml-auto text-xs text-muted transition-transform duration-200 group-open:rotate-180"></i>
+            </summary>
+        </details>
+      </div>
+
+      {{ if $service }}
+      <details class="group card card-pad">
+        <summary class="text-lg sm:text-xl flex w-full list-none items-center gap-2 cursor-pointer">
+          <i class="fa-solid fa-university text-base"></i>
+          Academic Service
+          <i class="fa-solid fa-chevron-down ml-auto text-xs text-muted transition-transform duration-200 group-open:rotate-180"></i>
+        </summary>
+        <div class="mt-4 card-pad space-y-6">
+          {{ range sort $service "year" "desc" }}
+            <div class="flex gap-3">
+                <span class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"></span>
+                  <div class="flex-1 space-y-2">
+              <h3 class="text-md font-semibold leading-snug">{{ .event }}</h3>
+              {{ with .role }}
+                <p class="flex items-center gap-1 text-base text-muted">
+                    <i class="fa-solid fa-user text-[0.65rem] opacity-70"></i>
+                    <span class="italic">{{ . }}</span> 
+                </p>
+              {{ end }}
+              {{ with .link }}
+                            <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="text-sm py-1 inline-flex items-center gap-1.5 link-underline hover:text-accent">
+                                <i class="fa-solid fa-link text-white"></i>
+                                Details
+                            </a>
+            {{ end }}
+              </div>
+            </div>
+            </div>
+          {{ end }}
+        </div>
+      </details>
+    {{ end }}
+
+
+    </div>
+  </section>
+{{ end }}

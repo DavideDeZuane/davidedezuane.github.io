@@ -1,0 +1,29 @@
+{{/*
+    components/collapsible-section.html
+    Wrapper comune per le sezioni "accordion" della pagina Research.
+  
+    Parametri (via dict):
+    - icon:    classe FontAwesome per l'icona del titolo, es. "fa-solid fa-book"
+    - title:   testo del titolo, es. "Publications"
+    - open:    bool, se true la sezione parte espansa
+    - content: HTML già renderizzato (template.HTML) da mostrare dentro la sezione
+*/}}
+
+<!-- ################################################## -->
+<!-- Section                                            -->
+<!-- ################################################## -->
+<div class="space-y-2">
+    <details class="group card card-pad"{{ if .open }} open{{ end }}>
+      <summary class="text-lg sm:text-xl flex w-full list-none items-center gap-2 cursor-pointer">
+        <!-- icon -->
+        <i class="{{ .icon }} text-base"></i>
+        <!-- title  -->
+        {{ .title }}
+        <!-- arrow  -->
+        <i class="fa-solid fa-chevron-down ml-auto text-xs text-muted transition-transform duration-200 group-open:rotate-180"></i>
+      </summary>
+      <div class="mt-4 space-y-6">
+        {{ .content }}
+      </div>
+    </details>
+  </div>
