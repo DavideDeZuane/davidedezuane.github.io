@@ -72,35 +72,35 @@ theme = "minimal-black"
     # TECH STACK 
     #################################################################
     [[params.home.tech]]
-      label = ""
+      label = "Linux"
       icon = "devicon-linux-plain colored"          
 
     [[params.home.tech]]
-      label = ""
+      label = "Arch"
       icon = "devicon-archlinux-plain "
 
     [[params.home.tech]]
-      label = ""
+      label = "Debian"
       icon = "devicon-debian-plain "
     
     [[params.home.tech]]
-      label = ""
+      label = "Proxmox"
       icon = "devicon-proxmox-plain-wordmark "
           
     [[params.home.tech]]
-      label = ""
+      label = "Docker"
       icon = "devicon-docker-plain "
 
     [[params.home.tech]]
-      label = ""
+      label = "Git"
       icon = "devicon-git-plain "
 
     [[params.home.tech]]
-      label = ""
+      label = "Ansible"
       icon = "devicon-ansible-plain "
 
     [[params.home.tech]]
-      label = ""
+      label = "Traefik"
       icon = "devicon-traefikproxy-plain" 
 
     [[params.home.techReverse]]
@@ -120,8 +120,20 @@ theme = "minimal-black"
       icon = "devicon-latex-original "  
       
     [[params.home.techReverse]]
-      label = "C"
+      label = "C Language"
       icon = "devicon-c-plain "
+
+    [[params.home.techReverse]]
+      label = "CMake"
+      icon = "devicon-cmake-plain "
+
+    [[params.home.techReverse]]
+      label = "Python"
+      icon = "devicon-python-plain "
+
+    [[params.home.techReverse]]
+      label = "tmux"
+      icon = "devicon-tmux-plain"
 
 
   # About Page Alternative Layout Configuration - Optional
