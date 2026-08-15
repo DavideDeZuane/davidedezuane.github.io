@@ -132,6 +132,10 @@ theme = "minimal-black"
       icon = "devicon-python-plain "
 
     [[params.home.techReverse]]
+      label = "Tailwind"
+      icon = "devicon-tailwindcss-original "
+
+    [[params.home.techReverse]]
       label = "tmux"
       icon = "devicon-tmux-plain"
 
