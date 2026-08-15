@@ -220,8 +220,27 @@ theme = "minimal-black"
     weight = 2
     identifier = "research"
     [menu.main.params]
-      icon = "fa-solid fa-book-open"
+      icon = "fa-solid fa-book"
 
+  [[menu.main]]
+    name = "Curriculum"
+    pageRef = "cv"
+    url = "/cv/"
+    weight = 3
+    identifier = "cv"
+    [menu.main.params]
+      icon = "fa-solid fa-circle-user"
+
+  [[menu.main]]
+    name = "Photos"
+    pageRef = "photos"
+    url = "/photos/"
+    weight = 4
+    identifier = "photos"
+    [menu.main.params]
+      icon = "fa-solid fa-camera-retro"
+
+    
 # Markup Configuration
 [markup]
   # Table of Contents
