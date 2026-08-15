@@ -16,15 +16,15 @@ theme = "minimal-black"
 
 [params]
   brand = ""
-  description = "A minimal, dark-mode first personal site, or whatever else you want it to be about"
+  description = ""
 
 
   ################################################################################################################
   # Intro for each page
   ################################################################################################################
   researchIntro = ""
-  projectsIntro = "Selected projects to display list." # Can be empty
-  blogIntro = "" # Can be empty
+  projectsIntro = ""
+  blogIntro = ""
 
   # Favicon - Place your favicon files in /static/ directory
   # Supported formats: .ico, .png, .svg

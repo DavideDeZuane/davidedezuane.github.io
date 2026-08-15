@@ -52,25 +52,36 @@
 
   <!-- Academic / social links -->
   {{ with $hero.socials }}
-    <div class="flex flex-wrap items-center justify-center gap-3 mt-4">
-      {{ range . }}
-      {{ $brandColor := "" }}
-      {{ if eq .label "GitHub" }}{{ $brandColor = "#181717" }}{{ end }}
-      {{ if eq .label "Google Scholar" }}{{ $brandColor = "#4285F4" }}{{ end }}
-      {{ if eq .label "ORCID" }}{{ $brandColor = "#A6CE39" }}{{ end }}
+  <div class="flex flex-wrap items-center justify-center gap-3 mt-4">
+    {{ range . }}
+      {{ if eq .label "GitHub" }}
+        <a
+          href="{{ .url }}"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="{{ .label }}"
+          class="flex h-12 w-12 items-center justify-center rounded-full text-text transition-opacity hover:opacity-85"
+        >
+          <i class="{{ .icon }} text-2xl"></i>
+        </a>
+      {{ else }}
+        {{ $brandColor := "" }}
+        {{ if eq .label "Google Scholar" }}{{ $brandColor = "#4285F4" }}{{ end }}
+        {{ if eq .label "ORCID" }}{{ $brandColor = "#A6CE39" }}{{ end }}
         <a
           href="{{ .url }}"
           target="_blank"
           rel="noopener noreferrer"
           style="color: {{ $brandColor }};"
           aria-label="{{ .label }}"
-          class="flex h-12 w-12 items-center justify-center rounded-full text-muted transition-colors hover:text-accent hover:bg-surface/80"
+          class="flex h-12 w-12 items-center justify-center rounded-full transition-opacity hover:opacity-85"
         >
-            <i class="{{ .icon }} text-3xl"></i>
+          <i class="{{ .icon }} text-2xl"></i>
         </a>
       {{ end }}
-    </div>
-  {{ end }}
+    {{ end }}
+  </div>
+{{ end }}
 
   <!-- Optional highlight pills -->
   {{ with $hero.highlights }}
