@@ -22,7 +22,7 @@ theme = "minimal-black"
   ################################################################################################################
   # Intro for each page
   ################################################################################################################
-  researchIntro = "Collection of main pubblications and all topics"
+  researchIntro = ""
   projectsIntro = "Selected projects to display list." # Can be empty
   blogIntro = "" # Can be empty
 

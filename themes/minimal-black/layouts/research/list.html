@@ -7,10 +7,6 @@
           <p class="max-w-xl text-sm text-muted">
             {{ . }}
           </p>
-        {{ else }}
-          <p class="max-w-xl text-sm text-muted">
-            Publications, preprints, and talks from my work in post-quantum cryptography.
-          </p>
         {{ end }}
       </header>
 
@@ -41,7 +37,7 @@
         {{ partial "components/collapsible-section.html" (dict
             "icon" "fa-solid fa-microphone-lines"
             "title" "Talks"
-            "open" true
+            "open" false
             "content" ($content | safeHTML)
         ) }}
       {{ end }}

@@ -1,0 +1,14 @@
+# data/talks.yaml
+#
+# Campi:
+# - title:    titolo del talk (obbligatorio)
+# - event:    nome della conferenza/evento
+# - location: città, paese
+# - date:     "YYYY-MM-DD" (usata per l'ordinamento)
+# - link:     URL opzionale (slide, pagina evento, ecc.)
+
+- title: "IKE: Relevant Challenges for a Messy Protocol"
+  event: "Politecnico di Milano, DEIB"
+  location: "Milano, Italy"
+  date: "2026-02-13"
+  link: "https://www.deib.polimi.it/ita/eventi/dettagli/3366"
