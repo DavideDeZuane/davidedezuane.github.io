@@ -1,0 +1,23 @@
+# data/awards.yaml
+# Nuovo file, non ancora integrato in nessuna pagina del sito — fammi sapere se
+# vuoi che ti prepari anche il partial/sezione per mostrarlo (es. in CV o Home).
+
+- title: "Huawei ICT Competition 2024-2025"
+  date: "2025-05-24"
+  description: "2nd place – Computing Track finalist"
+  link: ""
+
+- title: "Huawei ICT Competition 2023-2024"
+  date: "2024-05-26"
+  description: "2nd place – Network Track finalist"
+  link: ""
+
+- title: "Web App Contest Cupra"
+  date: "2023-06-02"
+  description: "1st place – Web application development competition"
+  link: ""
+
+- title: "HackUNIVPM 2023"
+  date: "2023-03-17"
+  description: "1st place – Hackathon focused on software development and innovation"
+  link: ""

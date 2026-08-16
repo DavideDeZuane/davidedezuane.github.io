@@ -10,9 +10,9 @@
         {{ end }}
       </header>
 
-      {{ $talks := .Site.Data.talks }}
-      {{ $publications := .Site.Data.publications }}
-      {{ $service := .Site.Data.academicService }}
+      {{ $talks        := .Site.Data.research.talks           }}
+      {{ $publications := .Site.Data.research.publications    }}
+      {{ $service      := .Site.Data.research.academicService }}
 
       {{/* Publications */}}
       {{ if $publications }}

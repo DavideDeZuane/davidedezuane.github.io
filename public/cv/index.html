@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en"
+  data-cb-collapse-enabled=""
+  data-cb-collapse-default=""
+  data-cb-collapse-lines=""
+  data-cb-collapse-auto-height=""
+  data-cb-collapse-collapsed-height="">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Curriculum | Portfolio</title>
+
+<meta name="description" content="" />
+
+
+
+
+  <link rel="icon" type="image/x-icon" href="/icons/favicon.svg" />
+
+
+
+
+  <link rel="apple-touch-icon" href="/home/davide/workspace/repos/portfolio/content/cv/_index.md" />
+
+
+
+
+  
+    
+  
+    
+  
+    
+  
+    
+      <link rel="manifest" href="http://localhost:1313/manifest.webmanifest" />
+    
+  
+
+
+<link rel="stylesheet" href="/css/main.css"> 
+
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+  >
+
+
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.17.0/devicon.min.css"
+  >
+
+
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"
+/>
+
+
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/justified-gallery@3.8.2/dist/css/justifiedGallery.min.css"
+/>
+
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({ theme: "dark" });
+</script>
+
+<script>
+  (function () {
+    try {
+      var stored = localStorage.getItem("theme");
+      var systemDark =
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches;
+      var defaultTheme =
+        'dark';
+
+      var theme =
+        stored ||
+        (defaultTheme === "dark"
+          ? "dark"
+          : defaultTheme === "light"
+          ? "light"
+          : systemDark
+          ? "dark"
+          : "light");
+
+      document.documentElement.setAttribute("data-theme", theme);
+    } catch (e) {
+      document.documentElement.setAttribute("data-theme", "light");
+    }
+  })();
+</script>
+
+
+
+
+  </head>
+  <body class="min-h-screen bg-bg text-text antialiased">
+    <div class="flex min-h-screen flex-col">
+      <header class="pt-6">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    
+    <div class="nav-shell">
+      <div class="nav-inner">
+
+        <div class="flex w-full items-center gap-2 justify-between ">
+          
+          <nav class="hidden items-center gap-5 md:flex">
+              <a
+                href="/"
+                class="nav-link link-underline flex items-center gap-1 "
+              >
+                
+                  <i class="fa-solid fa-house text-[0.75rem]"></i>
+                
+                <span>Home</span>
+              </a>
+              <a
+                href="/research/"
+                class="nav-link link-underline flex items-center gap-1 "
+              >
+                
+                  <i class="fa-solid fa-book text-[0.75rem]"></i>
+                
+                <span>Research</span>
+              </a>
+              <a
+                href="/cv/"
+                class="nav-link link-underline flex items-center gap-1 text-text"
+              >
+                
+                  <i class="fa-solid fa-circle-user text-[0.75rem]"></i>
+                
+                <span>Curriculum</span>
+              </a>
+              <a
+                href="/photos/"
+                class="nav-link link-underline flex items-center gap-1 "
+              >
+                
+                  <i class="fa-solid fa-camera-retro text-[0.75rem]"></i>
+                
+                <span>Photos</span>
+              </a>
+          </nav>
+          
+          <button
+            type="button"
+            class="ml-1 inline-flex items-center justify-center rounded-full border border-border bg-bg p-2 text-muted shadow-sm hover:text-accent md:hidden"
+            aria-label="Toggle navigation"
+            data-mobile-nav-toggle
+          >
+            <span class="sr-only">Open navigation</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" y1="6" x2="20" y2="6" />
+              <line x1="4" y1="12" x2="20" y2="12" />
+              <line x1="4" y1="18" x2="20" y2="18" />
+            </svg>
+          </button>
+          <div class="ml-auto">
+            <button
+  type="button"
+  class="theme-toggle"
+  aria-label="Toggle dark mode"
+  data-theme-toggle
+>
+  <span data-theme-icon-light style="display: none">
+    
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-4 w-4"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <circle cx="12" cy="12" r="4" />
+      <path
+        d="M12 3v2m0 14v2m9-9h-2M5 12H3m15.364-6.364-1.414 1.414M8.05 15.95l-1.414 1.414m0-11.314L8.05 8.05m9.9 9.9-1.414-1.414"
+      />
+    </svg>
+  </span>
+
+  <span data-theme-icon-dark>
+    
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-4 w-4"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <path d="M21 12.79A9 9 0 0 1 12.21 3 7 7 0 1 0 21 12.79z" />
+    </svg>
+  </span>
+</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  
+  <div class="mx-auto mt-2 max-w-7xl px-4 sm:px-6 md:hidden">
+    <nav
+      class="hidden rounded-2xl border border-border bg-surface px-4 py-3 text-sm text-muted shadow-md"
+      data-mobile-nav
+    >
+      
+        <a href="/" class="flex items-center gap-2 py-1.5">
+          
+            <i class="fa-solid fa-house text-[0.8rem]"></i>
+          
+          <span>Home</span>
+        </a>
+      
+        <a href="/research/" class="flex items-center gap-2 py-1.5">
+          
+            <i class="fa-solid fa-book text-[0.8rem]"></i>
+          
+          <span>Research</span>
+        </a>
+      
+        <a href="/cv/" class="flex items-center gap-2 py-1.5">
+          
+            <i class="fa-solid fa-circle-user text-[0.8rem]"></i>
+          
+          <span>Curriculum</span>
+        </a>
+      
+        <a href="/photos/" class="flex items-center gap-2 py-1.5">
+          
+            <i class="fa-solid fa-camera-retro text-[0.8rem]"></i>
+          
+          <span>Photos</span>
+        </a>
+      
+    </nav>
+  </div>
+</header>
+
+
+      <main class="flex-1">
+        
+  <section class="layout-page">
+    <div class="page-int section-stack">
+      <header class="space-y-3">
+        <h1 class="heading-page text-2xl sm:text-3xl">CV</h1>
+        
+          <p class="max-w-xl text-sm text-muted">
+            My academic background and work experience.
+          </p>
+        
+        
+      </header>
+
+      
+      
+      
+
+
+      
+
+  <div class="space-y-4">
+    <h2 class="heading-page text-lg sm:text-xl inline-flex items-center gap-2">
+      <i class="fa-solid fa-graduation-cap text-accent text-base"></i>
+      Education
+    </h2>
+    <div class="timeline">
+      
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <strong>Ph.D. in Cybersecurity</strong>
+            <em>
+              <i class="fa-solid fa-building-columns text-[0.7rem] opacity-70"></i>
+              IMT School for Advanced Studies Lucca · Lucca, Italy
+            </em>
+            <em>
+              <i class="fa-regular fa-calendar text-[0.7rem] opacity-70"></i>
+              Ongoing
+            </em>
+            
+            
+          </div>
+        </div>
+      
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <strong>M.Sc. in Computer Engineering</strong>
+            <em>
+              <i class="fa-solid fa-building-columns text-[0.7rem] opacity-70"></i>
+              Università Politecnica delle Marche · Ancona, Italy
+            </em>
+            <em>
+              <i class="fa-regular fa-calendar text-[0.7rem] opacity-70"></i>
+              2024
+            </em>
+            
+              <p>Thesis: Development, implementation, and analysis of quantum-safe protocols for satellite communications · 110/110 cum laude</p>
+            
+            
+          </div>
+        </div>
+      
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <strong>B.Sc. in Computer Engineering</strong>
+            <em>
+              <i class="fa-solid fa-building-columns text-[0.7rem] opacity-70"></i>
+              Università Politecnica delle Marche · Ancona, Italy
+            </em>
+            <em>
+              <i class="fa-regular fa-calendar text-[0.7rem] opacity-70"></i>
+              2022
+            </em>
+            
+              <p>Thesis: Penetration Testing Experiences in Heterogeneous Scenarios · 110/110 cum laude</p>
+            
+            
+          </div>
+        </div>
+      
+        <div class="timeline-item">
+          <div class="timeline-marker"></div>
+          <div class="timeline-content">
+            <strong>High School Diploma</strong>
+            <em>
+              <i class="fa-solid fa-building-columns text-[0.7rem] opacity-70"></i>
+              ITIS A. Meucci · Castelfidardo, Italy
+            </em>
+            <em>
+              <i class="fa-regular fa-calendar text-[0.7rem] opacity-70"></i>
+              2019
+            </em>
+            
+              <p>100/100</p>
+            
+            
+          </div>
+        </div>
+      
+    </div>
+  </div>
+
+
+      
+      
+      
+        <div class="space-y-4">
+          <h2 class="heading-page text-lg sm:text-xl inline-flex items-center gap-2">
+            <i class="fa-solid fa-graduation-cap text-accent text-base"></i>
+            Education
+          </h2>
+          <div class="timeline">
+            
+              <div class="timeline-item">
+                <div class="space-y-2">
+                  <h3 class="text-md font-semibold leading-snug">Ph.D. in Cybersecurity</h3>
+                  <p class="flex items-center gap-1.5 text-base text-muted">
+                    <i class="fa-solid fa-building-columns text-[0.7rem] opacity-70"></i>
+                    <span>IMT School for Advanced Studies Lucca</span> · Lucca, Italy
+                  </p>
+                  <p class="flex items-center gap-1.5 text-base text-muted">
+                    <i class="fa-regular fa-calendar text-[0.7rem] opacity-70"></i>
+                    Ongoing
+                  </p>
+                </div>
+              </div>
+            
+              <div class="timeline-item">
+                <div class="space-y-2">
+                  <h3 class="text-md font-semibold leading-snug">M.Sc. in Computer Engineering</h3>
+                  <p class="flex items-center gap-1.5 text-base text-muted">
+                    <i class="fa-solid fa-building-columns text-[0.7rem] opacity-70"></i>
+                    <span>Università Politecnica delle Marche</span> · Ancona, Italy
+                  </p>
+                  <p class="flex items-center gap-1.5 text-base text-muted">
+                    <i class="fa-regular fa-calendar text-[0.7rem] opacity-70"></i>
+                    2024
+                  </p>
+                </div>
+              </div>
+            
+              <div class="timeline-item">
+                <div class="space-y-2">
+                  <h3 class="text-md font-semibold leading-snug">B.Sc. in Computer Engineering</h3>
+                  <p class="flex items-center gap-1.5 text-base text-muted">
+                    <i class="fa-solid fa-building-columns text-[0.7rem] opacity-70"></i>
+                    <span>Università Politecnica delle Marche</span> · Ancona, Italy
+                  </p>
+                  <p class="flex items-center gap-1.5 text-base text-muted">
+                    <i class="fa-regular fa-calendar text-[0.7rem] opacity-70"></i>
+                    2022
+                  </p>
+                </div>
+              </div>
+            
+              <div class="timeline-item">
+                <div class="space-y-2">
+                  <h3 class="text-md font-semibold leading-snug">High School Diploma</h3>
+                  <p class="flex items-center gap-1.5 text-base text-muted">
+                    <i class="fa-solid fa-building-columns text-[0.7rem] opacity-70"></i>
+                    <span>ITIS A. Meucci</span> · Castelfidardo, Italy
+                  </p>
+                  <p class="flex items-center gap-1.5 text-base text-muted">
+                    <i class="fa-regular fa-calendar text-[0.7rem] opacity-70"></i>
+                    2019
+                  </p>
+                </div>
+              </div>
+            
+          </div>
+        </div>
+      
+      
+      
+      
+        <div class="space-y-4">
+          <h2 class="heading-page text-lg sm:text-xl inline-flex items-center gap-2">
+            <i class="fa-solid fa-briefcase text-accent text-base"></i>
+            Experience
+          </h2>
+          <div class="timeline">
+            
+              <div class="timeline-item">
+                <div class="space-y-2">
+                  <h3 class="text-sm font-semibold leading-snug">Research Assistant</h3>
+                  <p class="flex items-center gap-1.5 text-sm text-muted">
+                    <i class="fa-solid fa-building-columns text-[0.7rem] opacity-70"></i>
+                    <span>Università Politecnica delle Marche — Dept. of Information Engineering</span> · Ancona, Italy
+                  </p>
+                  <p class="flex items-center gap-1.5 text-xs text-muted">
+                    <i class="fa-regular fa-calendar text-[0.7rem] opacity-70"></i>
+                    May 2026 – Nov 2026
+                  </p>
+                  
+                    <p class="text-sm text-muted italic">Quantum-safe Cryptographic Tools for the Protection of National Data and IT Assets</p>
+                  
+                  
+                </div>
+              </div>
+            
+              <div class="timeline-item">
+                <div class="space-y-2">
+                  <h3 class="text-sm font-semibold leading-snug">Research Assistant</h3>
+                  <p class="flex items-center gap-1.5 text-sm text-muted">
+                    <i class="fa-solid fa-building-columns text-[0.7rem] opacity-70"></i>
+                    <span>Università Politecnica delle Marche — Dept. of Information Engineering</span> · Ancona, Italy
+                  </p>
+                  <p class="flex items-center gap-1.5 text-xs text-muted">
+                    <i class="fa-regular fa-calendar text-[0.7rem] opacity-70"></i>
+                    Jul 2025 – Nov 2025
+                  </p>
+                  
+                    <p class="text-sm text-muted italic">Quantum-safe Cryptographic Tools for the Protection of National Data and IT Assets</p>
+                  
+                  
+                </div>
+              </div>
+            
+              <div class="timeline-item">
+                <div class="space-y-2">
+                  <h3 class="text-sm font-semibold leading-snug">Research Assistant</h3>
+                  <p class="flex items-center gap-1.5 text-sm text-muted">
+                    <i class="fa-solid fa-building-columns text-[0.7rem] opacity-70"></i>
+                    <span>Università Politecnica delle Marche — Dept. of Information Engineering</span> · Ancona, Italy
+                  </p>
+                  <p class="flex items-center gap-1.5 text-xs text-muted">
+                    <i class="fa-regular fa-calendar text-[0.7rem] opacity-70"></i>
+                    Mar 2025 – May 2025
+                  </p>
+                  
+                    <p class="text-sm text-muted italic">Satellite Lightweight Internet Key Exchange</p>
+                  
+                  
+                </div>
+              </div>
+            
+              <div class="timeline-item">
+                <div class="space-y-2">
+                  <h3 class="text-sm font-semibold leading-snug">Research Assistant</h3>
+                  <p class="flex items-center gap-1.5 text-sm text-muted">
+                    <i class="fa-solid fa-building-columns text-[0.7rem] opacity-70"></i>
+                    <span>Università Politecnica delle Marche — Dept. of Information Engineering</span> · Ancona, Italy
+                  </p>
+                  <p class="flex items-center gap-1.5 text-xs text-muted">
+                    <i class="fa-regular fa-calendar text-[0.7rem] opacity-70"></i>
+                    Feb 2024 – May 2024
+                  </p>
+                  
+                    <p class="text-sm text-muted italic">Over-the-Air Cryptographic Keys Exchange for Secure Governmental Satellite Communications</p>
+                  
+                  
+                </div>
+              </div>
+            
+          </div>
+        </div>
+      
+      
+      
+      
+      
+    </div>
+  </section>
+
+      </main>
+
+      <footer class="pb-6 pt-10">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="footer-shell">
+      <div class="footer-inner">
+        
+        <div class="space-y-1">
+          <p class="footer-small">
+            &copy; 2026 Portfolio — All rights
+            reserved.
+          </p>
+
+          <p class="footer-small flex flex-wrap items-center gap-1">
+            <span>Built with</span>
+
+            <a
+              href="https://gohugo.io/"
+              class="footer-link footer-float link-underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Hugo</span>
+            </a>
+
+            <span>/</span>
+
+            <a
+              href=""
+              class="footer-link footer-float link-underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Minimal&nbsp;Black</span>
+            </a>
+          </p>
+        </div>
+
+        
+        
+      </div>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <div class="search-overlay" data-search-overlay>
+  <div class="search-overlay-backdrop" data-search-close></div>
+
+  <div class="search-panel">
+    <div class="search-panel-header">
+      <div class="search-input-wrap">
+        <i class="fa-solid fa-magnifying-glass text-[0.8rem] text-muted"></i>
+        <input
+          type="search"
+          class="search-input"
+          placeholder="Search posts..."
+          autocomplete="off"
+          data-search-input
+        />
+      </div>
+      <button
+        type="button"
+        class="search-close"
+        data-search-close
+        aria-label="Close search"
+      >
+        <i class="fa-solid fa-xmark text-[0.8rem]"></i>
+      </button>
+    </div>
+
+    <div class="search-panel-body">
+      <div class="search-results" data-search-results>
+        <div class="search-empty-state">
+          <div class="search-empty-icon">
+            <i class="fa-solid fa-magnifying-glass text-[1rem]"></i>
+          </div>
+          <p class="search-empty-title">Start searching</p>
+          <p class="search-empty-subtitle">
+            Enter keywords to search articles.
+          </p>
+        </div>
+      </div>
+
+      <div class="search-footer-hints">
+        <div class="search-hint-key">
+          <span>↑↓</span>
+          <span>Navigate</span>
+        </div>
+        <div class="search-hint-key">
+          <span>↵</span>
+          <span>Select</span>
+        </div>
+        <div class="search-hint-key">
+          <span>ESC</span>
+          <span>Close</span>
+        </div>
+        <div class="search-hint-key search-hint-right">
+          <span>Ctrl</span><span>K</span>
+          <span>Shortcut</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <div class="dock" data-dock>
+  <div class="dock-inner">
+    
+    <div class="dock-panel" data-dock-panel>
+      
+      
+      <button
+        type="button"
+        class="dock-action"
+        data-dock-action="back"
+        aria-label="Go back"
+      >
+        <i class="fa-solid fa-arrow-left text-[0.7rem]"></i>
+      </button>
+      <span class="dock-divider" aria-hidden="true"></span>
+      
+
+      
+      <button
+        type="button"
+        class="dock-action"
+        data-dock-action="search"
+        aria-label="Search"
+        onclick="window.MinimalSearch && window.MinimalSearch.open()"
+      >
+        <i class="fa-solid fa-magnifying-glass text-[0.7rem]"></i>
+      </button>
+
+      
+      <span class="dock-divider" aria-hidden="true"></span>
+
+      
+      <button
+        type="button"
+        class="dock-action"
+        data-dock-action="top"
+        aria-label="Back to top"
+      >
+        <i class="fa-solid fa-arrow-up text-[0.7rem]"></i>
+      </button>
+    </div>
+
+    
+    <button
+      type="button"
+      class="dock-toggle"
+      aria-label="Open quick actions"
+      data-dock-toggle
+    >
+      <span class="dock-toggle-dots"></span>
+    </button>
+  </div>
+</div>
+
+    <script src="/js/main.js" defer></script>
+    <script src="/js/search.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/justified-gallery@3.8.2/dist/js/justifiedGallery.min.js" defer></script>
+    <script src="/js/lightbox.js" defer></script>
+    <script src="/js/gallery.js" defer></script>
+  </body>
+</html>

@@ -23,6 +23,7 @@ theme = "minimal-black"
   # Intro for each page
   ################################################################################################################
   researchIntro = ""
+  cvIntro = ""
   projectsIntro = ""
   blogIntro = ""
 
@@ -73,7 +74,7 @@ theme = "minimal-black"
     #################################################################
     [[params.home.tech]]
       label = "Linux"
-      icon = "devicon-linux-plain colored"          
+      icon = "devicon-linux-plain"          
 
     [[params.home.tech]]
       label = "Arch"
@@ -110,6 +111,10 @@ theme = "minimal-black"
     [[params.home.techReverse]]
       label = "Bash"
       icon = "devicon-bash-plain"  
+
+    [[params.home.techReverse]]
+      label = "Neovim"
+      icon = "devicon-neovim-plain"  
 
     [[params.home.techReverse]]
       label = "Markdown"
