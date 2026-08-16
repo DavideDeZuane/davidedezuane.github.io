@@ -4565,7 +4565,7 @@ html[data-theme="light"] .mb-codeblock-content {
 }
 
 .timeline-content strong {
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--color-text);
   display: block;
   margin-bottom: 0.75rem;
