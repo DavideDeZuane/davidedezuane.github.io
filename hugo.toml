@@ -3,6 +3,8 @@ languageCode = 'en-us'
 title = 'Portfolio'
 theme = "minimal-black"
 
+cvPdf = "static/CV.pdf"
+
 # Enable search index generation and web app manifest
 [outputs]
   home = ["HTML", "RSS", "JSON", "WebAppManifest"]

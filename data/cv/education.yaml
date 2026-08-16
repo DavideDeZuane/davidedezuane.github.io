@@ -1,16 +1,16 @@
 # data/education.yaml
 
 - degree: "Ph.D. in Cybersecurity"
-  institution: "IMT School for Advanced Studies Lucca"
+  institution: "IMT School for Advanced Studies"
   location: "Lucca, Italy"
   period: "Ongoing"
 
 - degree: "M.Sc. in Computer Engineering"
-  institution: "Università Politecnica delle Marche"
+  institution: "Marche Polytechnic University"
   location: "Ancona, Italy"
   period: "2022-2024"
 
 - degree: "B.Sc. in Computer Engineering"
-  institution: "Università Politecnica delle Marche"
+  institution: "Marche Polytechnic University"
   location: "Ancona, Italy"
   period: "2019-2022"

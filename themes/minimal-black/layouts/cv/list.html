@@ -1,21 +1,6 @@
 {{ define "main" }}
     <section class="layout-page">
         <div class="page-int section-stack">
-            <header class="space-y-3">
-                <h1 class="heading-page text-2xl sm:text-3xl">CV</h1>
-                {{ with .Site.Params.cvIntro }}
-                <p class="max-w-xl text-sm text-muted"> {{ . }} </p>
-                {{ else }}
-                <p class="max-w-xl text-sm text-muted"> My academic background and work experience. </p>
-                {{ end }}
-                <!-- Button to download PDF file-->
-                {{ with .Site.Params.cvPdf }}
-                <a href="{{ . | relURL }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1.5 text-sm font-medium text-white transition-opacity hover:opacity-85">
-                    <i class="fa-solid fa-file-pdf"></i>
-                    View PDF version
-                </a>
-                {{ end }}
-            </header>
 
             {{ $education  := .Site.Data.cv.education  }}
             {{ $experience := .Site.Data.cv.experience }}
@@ -86,36 +71,41 @@
             {{/* Awards */}}
             {{ if $awards }}
             <div class="space-y-4">
-                <h2 class="font-semibold text-2xl sm:text-xl inline-flex items-center gap-2">
-            <i class="fa-solid fa-award text-xl"></i>
-            Awards
-          </h2>
-          <div class="timeline">
-            {{ range sort $awards "date" "desc" }}
-              <div class="timeline-item">
-                <div class="space-y-2">
-                  <h3 class="text-sm font-semibold leading-snug">{{ .title }}</h3>
-                  {{ with .date }}
-                    <p class="flex items-center gap-1.5 text-xs text-muted">
-                      <i class="fa-regular fa-calendar text-[0.7rem] opacity-70"></i>
-                      {{ dateFormat "January 2006" . }}
-                    </p>
-                  {{ end }}
-                  {{ with .description }}
-                    <p class="text-sm text-muted italic">{{ . }}</p>
-                  {{ end }}
-                  {{ with .link }}
-                    <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-medium text-accent link-underline">
-                      Details
-                      <i class="fa-solid fa-arrow-right text-[0.65rem]"></i>
-                    </a>
-                  {{ end }}
-                </div>
+              <h2 class="font-semibold text-2xl sm:text-xl inline-flex items-center gap-2">
+                <i class="fa-solid fa-award text-xl"></i>
+                Awards
+              </h2>
+              <div class="timeline">
+                {{ range sort $awards "date" "desc" }}
+                  <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                      <strong>{{ .title }}</strong>
+                        {{ with .description }}
+                        <em>
+                          <i class="fa-solid fa-trophy"></i>
+                          {{ . }}
+                        </em>
+                        {{ end }}
+                        {{ with .date }}
+                        <em>
+                          <i class="fa-regular fa-calendar text-base opacity-70"></i>
+                          {{ dateFormat "January 2006" . }}
+                        </em>
+                        {{ end }}
+                        {{ with .link }}
+                        <p>
+                          <a href="{{ . }}" target="_blank" rel="noopener noreferrer">
+                            Details <i class="fa-solid fa-arrow-right text-[0.65rem]"></i>
+                          </a>
+                        </p>
+                        {{ end }}
+                    </div>
+                  </div>
+                {{ end }}
               </div>
+            </div>
             {{ end }}
-          </div>
-        </div>
-      {{ end }}
     </div>
   </section>
 {{ end }}

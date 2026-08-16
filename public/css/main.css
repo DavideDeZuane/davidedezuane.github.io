@@ -4526,7 +4526,8 @@ html[data-theme="light"] .mb-codeblock-content {
   background: color-mix(in srgb, var(--color-surface) 30%, transparent);
   border: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
   border-radius: 0.85rem;
-  padding: 1.5rem;
+  padding: 1.25rem;
+  padding-left: 1.5rem;
   transition: all 0.3s ease-out;
   position: relative;
   overflow: hidden;
