@@ -4482,7 +4482,7 @@ html[data-theme="light"] .mb-codeblock-content {
 .timeline-item {
   position: relative;
   padding-left: 60px;
-  margin-bottom: 3rem;
+  margin-bottom: 1.25rem;
 }
 
 .timeline-item:last-child {
@@ -4567,7 +4567,7 @@ html[data-theme="light"] .mb-codeblock-content {
   font-size: 1.1rem;
   color: var(--color-text);
   display: block;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.75rem;
 }
 
 .timeline-content em {
@@ -4575,7 +4575,7 @@ html[data-theme="light"] .mb-codeblock-content {
   color: var(--color-text-muted);
   font-style: normal;
   display: block;
-  margin-bottom: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 .timeline-content a {

@@ -1,138 +1,65 @@
 {{ define "main" }}
-  <section class="layout-page">
-    <div class="page-int section-stack">
-      <header class="space-y-3">
-        <h1 class="heading-page text-2xl sm:text-3xl">CV</h1>
-        {{ with .Site.Params.cvIntro }}
-          <p class="max-w-xl text-sm text-muted">
-            {{ . }}
-          </p>
-        {{ else }}
-          <p class="max-w-xl text-sm text-muted">
-            My academic background and work experience.
-          </p>
-        {{ end }}
-        {{ with .Site.Params.cvPdf }}
-          <a href="{{ . | relURL }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1.5 text-sm font-medium text-white transition-opacity hover:opacity-85">
-            <i class="fa-solid fa-file-pdf"></i>
-            View PDF version
-          </a>
-        {{ end }}
-      </header>
-
-      {{ $education  := .Site.Data.cv.education  }}
-      {{ $experience := .Site.Data.cv.experience }}
-      {{ $awards     := .Site.Data.cv.awards     }}
-
-
-      {{/* Education — usa il componente .timeline già esistente nel tema */}}
-{{ if $education }}
-  <div class="space-y-4">
-    <h2 class="heading-page text-lg sm:text-xl inline-flex items-center gap-2">
-      <i class="fa-solid fa-graduation-cap text-accent text-base"></i>
-      Education
-    </h2>
-    <div class="timeline">
-      {{ range $education }}
-        <div class="timeline-item">
-          <div class="timeline-marker"></div>
-          <div class="timeline-content">
-            <strong>{{ .degree }}</strong>
-            <em>
-              <i class="fa-solid fa-building-columns text-[0.7rem] opacity-70"></i>
-              {{ .institution }}{{ with .location }} · {{ . }}{{ end }}
-            </em>
-            <em>
-              <i class="fa-regular fa-calendar text-[0.7rem] opacity-70"></i>
-              {{ .period }}
-            </em>
-            {{ with .description }}
-              <p>{{ . }}</p>
-            {{ end }}
-            {{ with .link }}
-              <p>
-                <a href="{{ . }}" target="_blank" rel="noopener noreferrer">
-                  Details <i class="fa-solid fa-arrow-right text-[0.65rem]"></i>
+    <section class="layout-page">
+        <div class="page-int section-stack">
+            <header class="space-y-3">
+                <h1 class="heading-page text-2xl sm:text-3xl">CV</h1>
+                {{ with .Site.Params.cvIntro }}
+                <p class="max-w-xl text-sm text-muted"> {{ . }} </p>
+                {{ else }}
+                <p class="max-w-xl text-sm text-muted"> My academic background and work experience. </p>
+                {{ end }}
+                <!-- Button to download PDF file-->
+                {{ with .Site.Params.cvPdf }}
+                <a href="{{ . | relURL }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-full bg-accent px-3 py-1.5 text-sm font-medium text-white transition-opacity hover:opacity-85">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    View PDF version
                 </a>
-              </p>
-            {{ end }}
-          </div>
-        </div>
-      {{ end }}
-    </div>
-  </div>
-{{ end }}
+                {{ end }}
+            </header>
 
-      <!-- Education -->
-      {{/* Education */}}
-      {{ if $education }}
-        <div class="space-y-4">
-          <h2 class="heading-page text-lg sm:text-xl inline-flex items-center gap-2">
-            <i class="fa-solid fa-graduation-cap text-accent text-base"></i>
-            Education
-          </h2>
-          <div class="timeline">
-            {{ range $education }}
-              <div class="timeline-item">
-                <div class="space-y-2">
-                  <h3 class="text-md font-semibold leading-snug">{{ .degree }}</h3>
-                  <p class="flex items-center gap-1.5 text-base text-muted">
-                    <i class="fa-solid fa-building-columns text-[0.7rem] opacity-70"></i>
-                    <span>{{ .institution }}</span>{{ with .location }} · {{ . }}{{ end }}
-                  </p>
-                  <p class="flex items-center gap-1.5 text-base text-muted">
-                    <i class="fa-regular fa-calendar text-[0.7rem] opacity-70"></i>
-                    {{ .period }}
-                  </p>
+            {{ $education  := .Site.Data.cv.education  }}
+            {{ $experience := .Site.Data.cv.experience }}
+            {{ $awards     := .Site.Data.cv.awards     }}
+
+
+            {{/* Education — usa il componente .timeline già esistente nel tema */}}
+            {{ if $education }}
+            
+            <div class="space-y-4">
+                <h2 class="font-semibold text-2xl sm:text-lg inline-flex items-center gap-2">
+                    <i class="fa-solid fa-graduation-cap text-lg"></i>
+                    Education
+                </h2>
+                <div class="timeline">
+                    {{ range $education }}
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <strong>{{ .degree }}</strong>
+                            <!-- Institution -->
+                            <em>
+                              <i class="fa-solid fa-building-columns text-base opacity-70"></i>
+                              {{ .institution }}{{ with .location }} · {{ . }}{{ end }}
+                            </em>
+                            <!-- Period -->
+                            <em>
+                              <i class="fa-regular fa-calendar text-base opacity-70"></i>
+                              {{ .period }}
+                            </em>
+                        </div>
+                    </div>
+                    {{ end }}
                 </div>
-              </div>
+            </div>
+            
             {{ end }}
-          </div>
-        </div>
-      {{ end }}
+
       
-      {{/* Experience */}}
-      {{ if $experience }}
-        <div class="space-y-4">
-          <h2 class="heading-page text-lg sm:text-xl inline-flex items-center gap-2">
-            <i class="fa-solid fa-briefcase text-accent text-base"></i>
-            Experience
-          </h2>
-          <div class="timeline">
-            {{ range $experience }}
-              <div class="timeline-item">
-                <div class="space-y-2">
-                  <h3 class="text-sm font-semibold leading-snug">{{ .role }}</h3>
-                  <p class="flex items-center gap-1.5 text-sm text-muted">
-                    <i class="fa-solid fa-building-columns text-[0.7rem] opacity-70"></i>
-                    <span>{{ .company }}</span>{{ with .location }} · {{ . }}{{ end }}
-                  </p>
-                  <p class="flex items-center gap-1.5 text-xs text-muted">
-                    <i class="fa-regular fa-calendar text-[0.7rem] opacity-70"></i>
-                    {{ .period }}
-                  </p>
-                  {{ with .description }}
-                    <p class="text-sm text-muted italic">{{ . }}</p>
-                  {{ end }}
-                  {{ with .link }}
-                    <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-xs font-medium text-accent link-underline">
-                      Details
-                      <i class="fa-solid fa-arrow-right text-[0.65rem]"></i>
-                    </a>
-                  {{ end }}
-                </div>
-              </div>
-            {{ end }}
-          </div>
-        </div>
-      {{ end }}
-      
-      {{/* Awards */}}
-      {{ $awards := .Site.Data.awards }}
-      {{ if $awards }}
-        <div class="space-y-4">
-          <h2 class="heading-page text-lg sm:text-xl inline-flex items-center gap-2">
-            <i class="fa-solid fa-award text-accent text-base"></i>
+            {{/* Awards */}}
+            {{ if $awards }}
+            <div class="space-y-4">
+                <h2 class="font-semibold text-2xl sm:text-xl inline-flex items-center gap-2">
+            <i class="fa-solid fa-award text-xl"></i>
             Awards
           </h2>
           <div class="timeline">
