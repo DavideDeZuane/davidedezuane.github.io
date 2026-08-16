@@ -1,27 +1,27 @@
 # data/experience.yaml
 
-- role: "Research Assistant"
+- role: "Independent Contractor"
   company: "Università Politecnica delle Marche — Dept. of Information Engineering"
   location: "Ancona, Italy"
   period: "May 2026 – Nov 2026"
   description: "Quantum-safe Cryptographic Tools for the Protection of National Data and IT Assets"
   link: ""
 
-- role: "Research Assistant"
+- role: "Independent Contractor"
   company: "Università Politecnica delle Marche — Dept. of Information Engineering"
   location: "Ancona, Italy"
   period: "Jul 2025 – Nov 2025"
   description: "Quantum-safe Cryptographic Tools for the Protection of National Data and IT Assets"
   link: ""
 
-- role: "Research Assistant"
+- role: "Independent Contractor"
   company: "Università Politecnica delle Marche — Dept. of Information Engineering"
   location: "Ancona, Italy"
   period: "Mar 2025 – May 2025"
   description: "Satellite Lightweight Internet Key Exchange"
   link: ""
 
-- role: "Research Assistant"
+- role: "Independent Contractor"
   company: "Università Politecnica delle Marche — Dept. of Information Engineering"
   location: "Ancona, Italy"
   period: "Feb 2024 – May 2024"

@@ -24,7 +24,6 @@
 
             {{/* Education — usa il componente .timeline già esistente nel tema */}}
             {{ if $education }}
-            
             <div class="space-y-4">
                 <h2 class="font-semibold text-2xl sm:text-lg inline-flex items-center gap-2">
                     <i class="fa-solid fa-graduation-cap text-lg"></i>
@@ -51,9 +50,38 @@
                     {{ end }}
                 </div>
             </div>
-            
             {{ end }}
 
+            {{/* Experience */}}
+            {{ if $experience }}
+            <div class="space-y-4">
+                <h2 class="font-semibold text-2xl sm:text-lg inline-flex items-center gap-2">
+                    <i class="fa-solid fa-briefcase text-lg"></i>
+                    Experience
+                </h2>
+                <div class="timeline">
+                    {{ range $experience }}
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <strong>{{ .role }}</strong>
+                            <!-- Company -->
+                            <em>
+                              <i class="fa-solid fa-building-columns text-base opacity-70"></i>
+                              {{ .company }}{{ with .location }} · {{ . }}{{ end }}
+                            </em>
+                            <!-- Period -->
+                            <em>
+                              <i class="fa-regular fa-calendar text-base opacity-70"></i>
+                              {{ .period }}
+                            </em>
+                        </div>
+                    </div>
+                    {{ end }}
+                </div>
+            </div>
+            {{ end }}
+            
       
             {{/* Awards */}}
             {{ if $awards }}
