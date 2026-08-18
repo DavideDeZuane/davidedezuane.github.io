@@ -2,45 +2,48 @@
   {{/* Brand string for logo/monogram */}}
   {{- $brand := .Site.Params.brand | default .Site.Title}}
   {{- $mono := upper (substr $brand 0 2) -}}
-
   <div class="mx-auto max-w-7xl px-4 sm:px-6">
     <!-- Floating nav container -->
     <div class="nav-shell">
       <div class="nav-inner">
-
-        <div class="flex w-full items-center gap-2 justify-between ">
+        <div class="flex w-full items-center justify-between gap-2">
           <!-- Desktop nav (configurable) -->
-          <nav class="hidden items-center gap-5 md:flex">
-            {{- $current := . -}}
+          <nav class="hidden items-center md:flex">
+            {{- $currentURL := .RelPermalink -}}
+            <!-- DEBUG currentURL: {{ $currentURL }} -->
             {{- range .Site.Menus.main }}
+              {{- $isActive := eq $currentURL (.URL | relURL) -}}
+              <!-- DEBUG menu item: name={{ .Name }} url-raw={{ .URL }} url-relURL={{ .URL | relURL }} isActive={{ $isActive }} -->
               <a
                 href="{{ .URL | relURL }}"
-                class="nav-link link-underline flex items-center gap-1 {{ if $current.IsMenuCurrent "main" . }}text-text{{ end }}"
+                class="nav-link link-underline flex items-center gap-1 rounded-full px-3 py-1 {{ if $isActive }}bg-accent/10{{ end }}"
               >
                 {{ with .Params.icon }}
-                  <i class="{{ . }} text-[0.75rem]"></i>
+                  <i class="{{ . }} text-[0.75rem] {{ if $isActive }}text-accent{{ end }}"></i>
                 {{ end }}
-                <span>{{ .Name }}</span>
+                <span class="{{ if $isActive }}!text-accent font-medium{{ end }}"
+                {{ if $isActive }}style="color: var(--color-accent) !important;"{{ end }}>{{ .Name }}</span>
               </a>
             {{- end }}
           </nav>
-          <!-- Mobile menu button -->
-          <button
-            type="button"
-            class="ml-1 inline-flex items-center justify-center rounded-full border border-border bg-bg p-2 text-muted shadow-sm hover:text-accent md:hidden"
-            aria-label="Toggle navigation"
-            data-mobile-nav-toggle
-          >
-            <span class="sr-only">Open navigation</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="4" y1="6" x2="20" y2="6" />
-              <line x1="4" y1="12" x2="20" y2="12" />
-              <line x1="4" y1="18" x2="20" y2="18" />
-            </svg>
-          </button>
-          <div class="ml-auto">
+
+          <!-- Right-hand group: theme toggle + mobile menu button -->
+          <div class="flex items-center gap-2">
             {{ partial "dark-toggle.html" . }}
+            <button
+              type="button"
+              class="inline-flex items-center justify-center rounded-full border border-border bg-bg p-2 text-muted shadow-sm hover:text-accent md:hidden"
+              aria-label="Toggle navigation"
+              data-mobile-nav-toggle
+            >
+              <span class="sr-only">Open navigation</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="4" y1="6" x2="20" y2="6" />
+                <line x1="4" y1="12" x2="20" y2="12" />
+                <line x1="4" y1="18" x2="20" y2="18" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>

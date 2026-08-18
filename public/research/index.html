@@ -110,63 +110,53 @@
     
     <div class="nav-shell">
       <div class="nav-inner">
-
-        <div class="flex w-full items-center gap-2 justify-between ">
+        <div class="flex w-full items-center justify-between gap-2">
           
-          <nav class="hidden items-center gap-5 md:flex">
+          <nav class="hidden items-center md:flex">
               <a
                 href="/"
-                class="nav-link link-underline flex items-center gap-1 "
+                class="nav-link link-underline flex items-center gap-1 rounded-full px-3 py-1 "
               >
                 
-                  <i class="fa-solid fa-house text-[0.75rem]"></i>
+                  <i class="fa-solid fa-house text-[0.75rem] "></i>
                 
-                <span>Home</span>
+                <span class=""
+                >Home</span>
               </a>
               <a
                 href="/research/"
-                class="nav-link link-underline flex items-center gap-1 text-text"
+                class="nav-link link-underline flex items-center gap-1 rounded-full px-3 py-1 bg-accent/10"
               >
                 
-                  <i class="fa-solid fa-book text-[0.75rem]"></i>
+                  <i class="fa-solid fa-book text-[0.75rem] text-accent"></i>
                 
-                <span>Research</span>
+                <span class="!text-accent font-medium"
+                style="color: var(--color-accent) !important;">Research</span>
               </a>
               <a
                 href="/cv/"
-                class="nav-link link-underline flex items-center gap-1 "
+                class="nav-link link-underline flex items-center gap-1 rounded-full px-3 py-1 "
               >
                 
-                  <i class="fa-solid fa-circle-user text-[0.75rem]"></i>
+                  <i class="fa-solid fa-circle-user text-[0.75rem] "></i>
                 
-                <span>Curriculum</span>
+                <span class=""
+                >Curriculum</span>
               </a>
               <a
                 href="/photos/"
-                class="nav-link link-underline flex items-center gap-1 "
+                class="nav-link link-underline flex items-center gap-1 rounded-full px-3 py-1 "
               >
                 
-                  <i class="fa-solid fa-camera-retro text-[0.75rem]"></i>
+                  <i class="fa-solid fa-camera-retro text-[0.75rem] "></i>
                 
-                <span>Photos</span>
+                <span class=""
+                >Photos</span>
               </a>
           </nav>
+
           
-          <button
-            type="button"
-            class="ml-1 inline-flex items-center justify-center rounded-full border border-border bg-bg p-2 text-muted shadow-sm hover:text-accent md:hidden"
-            aria-label="Toggle navigation"
-            data-mobile-nav-toggle
-          >
-            <span class="sr-only">Open navigation</span>
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="4" y1="6" x2="20" y2="6" />
-              <line x1="4" y1="12" x2="20" y2="12" />
-              <line x1="4" y1="18" x2="20" y2="18" />
-            </svg>
-          </button>
-          <div class="ml-auto">
+          <div class="flex items-center gap-2">
             <button
   type="button"
   class="theme-toggle"
@@ -209,6 +199,20 @@
   </span>
 </button>
 
+            <button
+              type="button"
+              class="inline-flex items-center justify-center rounded-full border border-border bg-bg p-2 text-muted shadow-sm hover:text-accent md:hidden"
+              aria-label="Toggle navigation"
+              data-mobile-nav-toggle
+            >
+              <span class="sr-only">Open navigation</span>
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none"
+                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="4" y1="6" x2="20" y2="6" />
+                <line x1="4" y1="12" x2="20" y2="12" />
+                <line x1="4" y1="18" x2="20" y2="18" />
+              </svg>
+            </button>
           </div>
         </div>
       </div>
@@ -253,7 +257,6 @@
     </nav>
   </div>
 </header>
-
 
       <main class="flex-1">
         
