@@ -59,10 +59,10 @@ cvPdf = "static/CV.pdf"
 
   # Home Page Configuration
   [params.home]
-    sections = ["hero", "now", "tech-marquee"]
+    sections = ["hero", "now", "tech-marquee", "projects", "posts"]
     showNowSection = true
-    showFeaturedProjects = true
-    showLatestPosts = true
+    showFeaturedProjects = false
+    showLatestPosts = false
     featuredProjectsLimit = 3
     latestPostsLimit = 3
     projectsTitle = "Selected Work"
