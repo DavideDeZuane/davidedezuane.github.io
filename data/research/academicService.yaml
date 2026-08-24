@@ -7,6 +7,11 @@
 # - link:  URL alla pagina della conferenza/comitato (opzionale)
 
 - role: " Technical Program Committee Member"
+  event: "7th Workshop on Enabling Security, Trust, and Privacy in 6G Wireless Systems"
+  year: 2026
+  link: "https://6gphysec.org/7th-workshop-on-enabling-security-trust-and-privacy-in-6g-wireless-systems-ieee-global-communications-conference/"
+
+- role: " Technical Program Committee Member"
   event: "6th Workshop on Enabling Security, Trust, and Privacy in 6G Wireless Systems"
   year: 2026
   link: "https://icc2026.ieee-icc.org/workshop/ws03-6th-workshop-enabling-security-trust-and-privacy-6g-wireless-systems"
