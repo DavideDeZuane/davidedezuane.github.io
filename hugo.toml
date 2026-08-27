@@ -220,7 +220,7 @@ cvPdf = "static/CV.pdf"
  
   [[params.hero.socials]]
     label = "ORCID"
-    url = "https://orcid.org/0009-0004-3379-0704"
+    url = "https://orcid.org/0009-0007-2344-0681"
     icon = "fa-brands fa-orcid" # non usata, l'icona ORCID è SVG inline nel partial
 
 ############################################################################################################
