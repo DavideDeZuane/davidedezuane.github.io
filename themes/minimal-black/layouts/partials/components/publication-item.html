@@ -32,11 +32,17 @@
     {{ end }}
     <!-- Link to Repo -->
     {{ with .repo }}
-    <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 rounded-full link-underline hover:text-accent px-3 py-1 text-sm font-medium text-white transition-opacity hover:opacity-85">
+    <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 rounded-full link-underline hover:text-accent px-3 py-1 text-sm font-medium text-white transition-opacity hover:opacity-85">
       <i class="fa-brands fa-github"></i>
       Code
     </a>
     {{ end }}
+    {{ with .slides }}
+    <a href="{{ . | relURL }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 rounded-full link-underline hover:text-accent px-3 py-1 text-sm font-medium text-white transition-opacity hover:opacity-85">
+    <i class="fa-solid fa-chalkboard"></i>
+      Slides
+    </a>
+{{ end }}
 
   </div>
 </div>
