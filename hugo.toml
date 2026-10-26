@@ -59,7 +59,8 @@ cvPdf = "static/CV.pdf"
 
   # Home Page Configuration
   [params.home]
-    sections = ["hero", "now", "tech-marquee", "projects", "posts"]
+    sections = ["hero", "now", "projects", "posts"]
+    #sections = ["hero", "now", "tech-marquee", "projects", "posts"]
     showNowSection = true
     showFeaturedProjects = false
     showLatestPosts = false
