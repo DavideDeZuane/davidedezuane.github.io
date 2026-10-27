@@ -1,1 +1,7 @@
-public
+# Generati da Hugo
+/resources/_gen/
+/public/
+.hugo_build.lock
+
+# Dipendenze del tema (non servono per la build)
+node_modules/
