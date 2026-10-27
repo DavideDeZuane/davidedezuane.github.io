@@ -1,0 +1,86 @@
+{{- /*
+  Home: pubblicazioni come piccole card affiancate.
+  File: layouts/partials/home/publications.html  (radice del sito, NON nel tema)
+  Attivazione: in hugo.toml aggiungi "publications" a [params.home] sections.
+
+  Dati: data/research/publications.yaml
+  - mostra le voci con `featured: true`; se nessuna lo è, le più recenti
+  - campi opzionali: summary (descrizione breve, 1-2 frasi), venueShort (es. "ISIT"), repo, slides
+  Opzionale in [params.home]: publicationsTitle, publicationsLimit (default 4)
+*/ -}}
+{{- $home := .Site.Params.home -}}
+{{- with .Site.Data.research.publications -}}
+  {{- $limit := int ($home.publicationsLimit | default 4) -}}
+  {{- $items := where . "featured" true -}}
+  {{- if not $items }}{{ $items = . }}{{ end -}}
+  {{- $items = first $limit (sort $items "year" "desc") -}}
+
+<style>
+  .pubs-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 0.9rem; }
+  .pubs-all { font-size: 0.8rem; color: var(--color-text-muted); text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem; }
+  .pubs-all:hover { color: var(--color-accent); }
+
+  .pubs-row { display: grid; gap: 0.75rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (min-width: 900px) { .pubs-row { grid-template-columns: repeat({{ len $items }}, minmax(0, 1fr)); } }
+
+  .pubs-card {
+    position: relative; display: flex; flex-direction: column; gap: 0.55rem;
+    padding: 0.85rem 0.9rem 0.75rem; min-height: 9.5rem;
+    border: 1px solid var(--color-border); border-radius: 14px; background: var(--color-surface);
+    transition: transform .18s ease-out, border-color .18s ease-out, box-shadow .18s ease-out;
+  }
+  .pubs-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border)); box-shadow: 0 12px 28px rgba(0,0,0,.18); }
+  .pubs-cover { position: absolute; inset: 0; border-radius: inherit; z-index: 1; }
+
+  .pubs-top { display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+  .pubs-badge { padding: .08rem .45rem; border-radius: 999px; font-size: .6rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+                background: color-mix(in srgb, var(--color-accent) 18%, transparent); color: var(--color-accent); }
+  .pubs-badge--preprint { background: color-mix(in srgb, #f59e0b 18%, transparent); color: #d97706; }
+  .pubs-badge--journal  { background: color-mix(in srgb, #10b981 18%, transparent); color: #059669; }
+  .pubs-year { font-size: .7rem; color: var(--color-text-muted); }
+
+  .pubs-title { margin: 0; font-size: .82rem; font-weight: 600; line-height: 1.35; color: var(--color-text);
+                display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .pubs-card:hover .pubs-title { color: var(--color-accent); }
+
+  .pubs-summary { margin: 0; font-size: .72rem; line-height: 1.5; color: var(--color-text-muted);
+                  display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+
+  .pubs-bottom { margin-top: auto; display: flex; align-items: center; justify-content: space-between; gap: .5rem; }
+  .pubs-venue { font-size: .7rem; color: var(--color-text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .pubs-icons { position: relative; z-index: 2; display: inline-flex; gap: .6rem; }
+  .pubs-icons a { color: var(--color-text-muted); font-size: .8rem; }
+  .pubs-icons a:hover { color: var(--color-accent); }
+</style>
+
+<div class="animate-fade-up">
+  <div class="pubs-head">
+    <h2 class="heading-section">{{ $home.publicationsTitle | default "Selected Publications" }}</h2>
+    <a class="pubs-all" href="{{ "/research/" | relURL }}">All publications <i class="fa-solid fa-arrow-right-long"></i></a>
+  </div>
+
+  <div class="pubs-row">
+    {{- range $items }}
+      {{- $type := .type | default "Paper" -}}
+      {{- $kind := cond (eq $type "Preprint") "preprint" (cond (eq $type "Journal") "journal" "conference") -}}
+      {{- $label := cond (eq $kind "conference") "Conference" $type }}
+    <article class="pubs-card">
+      {{ with .link }}<a class="pubs-cover" href="{{ . }}" target="_blank" rel="noopener noreferrer" aria-label="Paper"></a>{{ end }}
+      <div class="pubs-top">
+        <span class="pubs-badge pubs-badge--{{ $kind }}">{{ $label }}</span>
+        <span class="pubs-year">{{ .year }}</span>
+      </div>
+      <h3 class="pubs-title">{{ .title }}</h3>
+      {{ with .summary }}<p class="pubs-summary">{{ . }}</p>{{ end }}
+      <div class="pubs-bottom">
+        <span class="pubs-venue" title="{{ .venue }}">{{ .venueShort | default .venue }}</span>
+        <span class="pubs-icons">
+          {{ with .repo }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer" title="Code"><i class="fa-brands fa-github"></i></a>{{ end }}
+          {{ with .slides }}<a href="{{ . | relURL }}" target="_blank" rel="noopener noreferrer" title="Slides"><i class="fa-solid fa-chalkboard"></i></a>{{ end }}
+        </span>
+      </div>
+    </article>
+    {{- end }}
+  </div>
+</div>
+{{- end -}}
