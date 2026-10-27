@@ -1,7 +1,7 @@
 ---
 title: "Zurich"
 country: "Switzerland"
-date: 2026-01-01                  # TODO: data del viaggio (AAAA-MM-GG)
+date: 2025-06-01                  # TODO: data del viaggio (AAAA-MM-GG)
 #conference: "Conference name"     # TODO: nome della conferenza/evento, o togli la riga
 # conferenceUrl: "https://..."    # opzionale
 coords: [47.3769, 8.5417]

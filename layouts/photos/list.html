@@ -1,5 +1,5 @@
 {{- /*
-  Pagina /photos/: mappa dei luoghi + una card per viaggio, raggruppate per anno.
+  Pagina /photos/: mappa dei luoghi in alto, poi una riga scorrevole di viaggi per ogni anno.
   File: layouts/photos/list.html (radice del sito, NON nel tema). Stile e script sono qui dentro.
   Ogni viaggio è una cartella: content/photos/<nome>/index.md + le foto.
 */ -}}
@@ -8,10 +8,10 @@
 {{- $points := slice -}}
 
 <style>
-  .ph-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; }
 
-  .ph-map { height: 340px; border-radius: 16px; border: 1px solid var(--color-border); overflow: hidden; background: var(--color-surface); z-index: 0; }
-  @media (min-width: 768px) { .ph-map { height: 420px; } }
+  /* Mappa (in alto): altezza ridotta */
+  .ph-map { height: 220px; border-radius: 16px; border: 1px solid var(--color-border); overflow: hidden; background: var(--color-surface); z-index: 0; }
+  @media (min-width: 768px) { .ph-map { height: 280px; } }
   .ph-map.leaflet-container { background: var(--color-surface); font: inherit; }
   .ph-pin span { display: block; width: 16px; height: 16px; border-radius: 50%; background: var(--color-accent);
                  border: 3px solid var(--color-bg); box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 35%, transparent); }
@@ -27,9 +27,11 @@
   .ph-map .ph-popup img { width: 100%; border-radius: 8px; margin-bottom: 6px; }
   .ph-map .ph-popup span, .ph-map .ph-popup em { font-size: .75rem; color: var(--color-text-muted); font-style: normal; }
 
-  .ph-year { font-size: .9rem; font-weight: 600; margin-bottom: .75rem; }
-  /* Riga di card scorrevole in orizzontale (una riga per anno) */
-  .section-stack > .ph-group { margin-top: 1.25rem !important; }
+  /* Un gruppo per anno: titolo + frecce, poi la riga scorrevole */
+  .section-stack > .ph-group { margin-top: 1.75rem !important; }
+  .section-stack > .ph-map { margin-top: 1.5rem !important; }
+  .ph-group-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: .5rem; }
+  .ph-year { margin: 0; font-size: .95rem; font-weight: 600; }
   .ph-arrows { display: flex; gap: .4rem; }
   .ph-arrows[hidden] { display: none; }
   .ph-arrow { width: 2rem; height: 2rem; border-radius: 999px; border: 1px solid var(--color-border); background: var(--color-surface);
@@ -38,14 +40,15 @@
   .ph-arrow:hover:not(:disabled) { border-color: var(--color-accent); color: var(--color-accent); }
   .ph-arrow:disabled { opacity: .35; cursor: default; }
 
-  .ph-grid { display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  .ph-grid { display: flex; gap: .75rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
              padding: .25rem 0 .5rem; scrollbar-width: none; overscroll-behavior-x: contain; }
   .ph-grid::-webkit-scrollbar { display: none; }
-  .ph-grid > .ph-card { flex: 0 0 80%; scroll-snap-align: start; }
-  @media (min-width: 640px)  { .ph-grid > .ph-card { flex-basis: calc((100% - 1rem) / 2); } }
-  @media (min-width: 1024px) { .ph-grid > .ph-card { flex-basis: calc((100% - 3rem) / 4); } }
+  /* Card visibili per riga: 2 su mobile, 3 su tablet, 6 su desktop (gap .75rem) */
+  .ph-grid > .ph-card { flex: 0 0 calc((100% - .75rem) / 2); scroll-snap-align: start; }
+  @media (min-width: 640px)  { .ph-grid > .ph-card { flex-basis: calc((100% - 1.5rem) / 3); } }
+  @media (min-width: 1024px) { .ph-grid > .ph-card { flex-basis: calc((100% - 3.75rem) / 6); } }
 
-  .ph-card { display: flex; flex-direction: column; border-radius: 14px; overflow: hidden; border: 1px solid var(--color-border);
+  .ph-card { display: flex; flex-direction: column; border-radius: 12px; overflow: hidden; border: 1px solid var(--color-border);
              background: var(--color-surface); color: inherit; text-decoration: none;
              transition: transform .18s ease-out, border-color .18s ease-out, box-shadow .18s ease-out; }
   .ph-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border)); box-shadow: 0 12px 28px rgba(0,0,0,.18); }
@@ -53,27 +56,20 @@
                  color: var(--color-text-muted); background: var(--color-bg); }
   .ph-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease-out; }
   .ph-card:hover .ph-card-img img { transform: scale(1.04); }
-  .ph-count { position: absolute; right: 8px; bottom: 8px; padding: .1rem .5rem; border-radius: 999px; font-size: .7rem; color: #fff;
+  .ph-count { position: absolute; right: 6px; bottom: 6px; padding: .05rem .4rem; border-radius: 999px; font-size: .62rem; color: #fff;
               background: rgba(0,0,0,.55); backdrop-filter: blur(4px); }
-  .ph-card-text { padding: .75rem .85rem .85rem; display: flex; flex-direction: column; gap: .15rem; }
-  .ph-card-text h3 { margin: 0; font-size: .95rem; font-weight: 600; }
+  .ph-card-text { padding: .45rem .6rem .5rem; display: flex; flex-direction: column; gap: 0; min-width: 0; }
+  .ph-card-text h3 { margin: 0; font-size: .82rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
   .ph-card-text h3 span { color: var(--color-text-muted); font-weight: 400; }
-  .ph-conf { font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; color: var(--color-text-muted); }
-  .ph-date { font-size: .75rem; color: var(--color-text-muted); }
+  .ph-date { font-size: .68rem; color: var(--color-text-muted); }
 </style>
 
 <section class="layout-page">
   <div class="page-int section-stack">
 
-    <header class="ph-head">
-      <div class="space-y-2">
-        <h1 class="heading-page text-2xl sm:text-3xl">{{ .Title }}</h1>
-        {{ with .Description }}<p class="text-sm text-muted">{{ . }}</p>{{ end }}
-      </div>
-      <div class="ph-arrows" hidden>
-        <button type="button" class="ph-arrow" data-dir="-1" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
-        <button type="button" class="ph-arrow" data-dir="1" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
-      </div>
+    <header class="space-y-2">
+      <h1 class="heading-page text-2xl sm:text-3xl">{{ .Title }}</h1>
+      {{ with .Description }}<p class="text-sm text-muted">{{ . }}</p>{{ end }}
     </header>
 
     {{ if $trips }}
@@ -88,16 +84,29 @@
           {{- $thumb := "" -}}
           {{- with $cover }}{{ $thumb = (.Fill "320x200 Center webp q75").RelPermalink }}{{ end -}}
           {{- $points = $points | append (dict "lat" (index . 0) "lng" (index . 1) "title" $p.Title
-                "conf" ($p.Params.conference | default "") "date" ($p.Date.Format "Jan 2006")
+                "date" ($p.Date.Format "Jan 2006")
                 "url" $p.RelPermalink "thumb" $thumb) -}}
         {{- end -}}
       {{- end -}}
 
 
-      {{- /* Tutti i viaggi in una sola riga scorrevole */ -}}
+      {{- /* Mappa, in alto */ -}}
+      {{ if $points }}
+        <div id="ph-map" class="ph-map" aria-label="Map of the places I visited"></div>
+      {{ end }}
+
+      {{- /* Un gruppo per anno, ognuno con la sua riga scorrevole */ -}}
+      {{ range $trips.GroupByDate "2006" }}
         <div class="ph-group">
+          <div class="ph-group-head">
+            <h2 class="ph-year">{{ .Key }}</h2>
+            <div class="ph-arrows" hidden>
+              <button type="button" class="ph-arrow" data-dir="-1" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+              <button type="button" class="ph-arrow" data-dir="1" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+          </div>
           <div class="ph-grid">
-            {{ range $trips }}
+            {{ range .Pages }}
               {{- $p := . -}}
               {{- $imgs := .Resources.ByType "image" -}}
               {{- $cover := "" -}}
@@ -106,7 +115,7 @@
               <a href="{{ .RelPermalink }}" class="ph-card">
                 <div class="ph-card-img">
                   {{ with $cover }}
-                    {{ $img := .Fill "720x540 Center webp q78" }}
+                    {{ $img := .Fill "480x360 Center webp q78" }}
                     <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ $p.Title }}" loading="lazy">
                   {{ else }}
                     <i class="fa-regular fa-image"></i>
@@ -114,20 +123,12 @@
                   {{ with len $imgs }}<span class="ph-count"><i class="fa-solid fa-camera"></i> {{ . }}</span>{{ end }}
                 </div>
                 <div class="ph-card-text">
-                  {{ with .Params.conference }}<span class="ph-conf">{{ . }}</span>{{ end }}
                   <h3>{{ .Title }}{{ with .Params.country }}<span>, {{ . }}</span>{{ end }}</h3>
                   <span class="ph-date">{{ .Date.Format "January 2006" }}</span>
                 </div>
               </a>
             {{ end }}
           </div>
-        </div>
-
-      {{- /* Mappa, sotto le foto */ -}}
-      {{ if $points }}
-        <div>
-          <h2 class="ph-year">Map</h2>
-          <div id="ph-map" class="ph-map" aria-label="Map of the places I visited"></div>
         </div>
       {{ end }}
 
@@ -139,9 +140,9 @@
 </section>
 
 <script>
-// Frecce per scorrere le righe di viaggi: compaiono solo se le card non stanno tutte nella riga
-(function () {
-  var row = document.querySelector(".ph-group .ph-grid"), arrows = document.querySelector(".ph-arrows");
+// Frecce per ogni anno: compaiono solo se le card di quell'anno non stanno tutte nella riga
+document.querySelectorAll(".ph-group").forEach(function (g) {
+  var row = g.querySelector(".ph-grid"), arrows = g.querySelector(".ph-arrows");
   if (!row || !arrows) return;
   var prev = arrows.querySelector('[data-dir="-1"]'), next = arrows.querySelector('[data-dir="1"]');
   function update() {
@@ -153,13 +154,13 @@
   arrows.addEventListener("click", function (e) {
     var b = e.target.closest(".ph-arrow"); if (!b) return;
     var card = row.querySelector(".ph-card");
-    var step = card ? card.getBoundingClientRect().width + 16 : row.clientWidth * 0.8;
+    var step = card ? card.getBoundingClientRect().width + 12 : row.clientWidth * 0.8;
     row.scrollBy({ left: step * Number(b.dataset.dir), behavior: "smooth" });
   });
   row.addEventListener("scroll", update, { passive: true });
   window.addEventListener("resize", update);
   update();
-})();
+});
 </script>
 
 {{ if $points }}
@@ -188,7 +189,6 @@
     var html = '<a class="ph-popup" href="' + p.url + '">' +
       (p.thumb ? '<img src="' + p.thumb + '" alt="">' : "") +
       "<strong>" + esc(p.title) + "</strong>" +
-      (p.conf ? "<span>" + esc(p.conf) + "</span>" : "") +
       "<em>" + esc(p.date) + "</em></a>";
     L.marker([p.lat, p.lng], { icon: icon, title: p.title }).addTo(map).bindPopup(html, { maxWidth: 220 });
     bounds.push([p.lat, p.lng]);
