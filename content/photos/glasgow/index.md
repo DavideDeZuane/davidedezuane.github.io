@@ -4,7 +4,7 @@
 # Copia questa cartella, rinominala (es. 2026-icc-glasgow), mettici le .jpg
 # e togli `draft: true`.
 # ---------------------------------------------------------------------------
-draft: true
+#draft: true
 
 title: "Glasgow"                  # città (titolo della card)
 country: "Scotland"               # paese (usato anche nel contatore)
