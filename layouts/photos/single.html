@@ -1,0 +1,79 @@
+{{- /*
+  Pagina di un viaggio: /photos/<nome>/
+  File: layouts/photos/single.html (radice del sito, NON nel tema). Stile qui dentro.
+  Le foto si aprono a schermo intero con GLightbox, già caricato dal tema.
+  Hugo pubblica solo copie ridimensionate (WebP): niente EXIF/GPS degli originali.
+*/ -}}
+{{ define "main" }}
+{{- $images := .Resources.ByType "image" -}}
+{{- $captions := .Params.captions | default dict -}}
+
+<style>
+  .ph-back { font-size: .8rem; color: var(--color-text-muted); text-decoration: none; display: inline-flex; gap: .4rem; align-items: center; }
+  .ph-back:hover { color: var(--color-accent); }
+  .ph-title span { color: var(--color-text-muted); font-weight: 400; }
+  .ph-meta { display: flex; flex-wrap: wrap; gap: .35rem 1.1rem; font-size: .85rem; color: var(--color-text-muted); }
+  .ph-meta i { font-size: .75rem; opacity: .7; margin-right: .3rem; }
+  .ph-meta a { color: inherit; text-decoration: underline; text-underline-offset: 3px;
+               text-decoration-color: color-mix(in srgb, var(--color-accent) 60%, transparent); }
+  .ph-meta a:hover { color: var(--color-accent); }
+  .ph-text { font-size: .9rem; color: var(--color-text-muted); }
+  .ph-text p + p { margin-top: .6rem; }
+
+  /* Mosaico con colonne CSS: le foto mantengono le proporzioni originali */
+  .ph-gallery { columns: 1; column-gap: 1rem; }
+  @media (min-width: 640px)  { .ph-gallery { columns: 2; } }
+  @media (min-width: 1024px) { .ph-gallery { columns: 3; } }
+  .ph-gallery figure { break-inside: avoid; margin: 0 0 1rem; }
+  .ph-gallery a { display: block; border-radius: 12px; overflow: hidden; }
+  .ph-gallery img { width: 100%; height: auto; display: block; transition: transform .35s ease-out; }
+  .ph-gallery a:hover img { transform: scale(1.03); }
+  .ph-gallery figcaption { margin-top: .4rem; font-size: .75rem; color: var(--color-text-muted); }
+
+  .ph-nav { display: flex; justify-content: space-between; gap: 1rem; font-size: .85rem; }
+  .ph-nav a { color: var(--color-text-muted); text-decoration: none; display: inline-flex; gap: .4rem; align-items: center; }
+  .ph-nav a:hover { color: var(--color-accent); }
+</style>
+
+<section class="layout-page">
+  <div class="page-int section-stack">
+
+    <header class="space-y-3">
+      <a href="{{ .Parent.RelPermalink }}" class="ph-back"><i class="fa-solid fa-arrow-left-long"></i> All photos</a>
+      <h1 class="heading-page text-2xl sm:text-3xl ph-title">{{ .Title }}{{ with .Params.country }}<span>, {{ . }}</span>{{ end }}</h1>
+      <div class="ph-meta">
+        {{ with .Params.conference }}
+          <span><i class="fa-solid fa-microphone-lines"></i>{{ with $.Params.conferenceUrl }}<a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ $.Params.conference }}</a>{{ else }}{{ . }}{{ end }}</span>
+        {{ end }}
+        <span><i class="fa-regular fa-calendar"></i>{{ .Date.Format "January 2006" }}</span>
+        {{ with .Params.paper }}
+          <span><i class="fa-regular fa-file-lines"></i><a href="{{ .url }}" target="_blank" rel="noopener noreferrer">{{ .title }}</a></span>
+        {{ end }}
+      </div>
+      {{ with .Content }}<div class="ph-text">{{ . }}</div>{{ end }}
+    </header>
+
+    {{ with $images }}
+      <div class="ph-gallery">
+        {{ range . }}
+          {{- $thumb := .Resize "900x webp q78" -}}
+          {{- $full := .Fit "2400x2400 webp q85" -}}
+          {{- $cap := index $captions .Name | default "" -}}
+          <figure>
+            <a href="{{ $full.RelPermalink }}" class="glightbox" data-gallery="trip"{{ with $cap }} data-glightbox="description: {{ . }}"{{ end }}>
+              <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="{{ $cap | default $.Title }}" loading="lazy">
+            </a>
+            {{ with $cap }}<figcaption>{{ . }}</figcaption>{{ end }}
+          </figure>
+        {{ end }}
+      </div>
+    {{ end }}
+
+    <nav class="ph-nav">
+      {{ with .PrevInSection }}<a href="{{ .RelPermalink }}"><i class="fa-solid fa-arrow-left-long"></i> {{ .Title }}</a>{{ else }}<span></span>{{ end }}
+      {{ with .NextInSection }}<a href="{{ .RelPermalink }}">{{ .Title }} <i class="fa-solid fa-arrow-right-long"></i></a>{{ end }}
+    </nav>
+
+  </div>
+</section>
+{{ end }}

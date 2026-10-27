@@ -1,0 +1,201 @@
+{{- /*
+  Pagina /photos/: mappa dei luoghi + una card per viaggio, raggruppate per anno.
+  File: layouts/photos/list.html (radice del sito, NON nel tema). Stile e script sono qui dentro.
+  Ogni viaggio è una cartella: content/photos/<nome>/index.md + le foto.
+*/ -}}
+{{ define "main" }}
+{{- $trips := .Pages.ByDate.Reverse -}}
+{{- $points := slice -}}
+
+<style>
+  .ph-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 1rem; }
+
+  .ph-map { height: 340px; border-radius: 16px; border: 1px solid var(--color-border); overflow: hidden; background: var(--color-surface); z-index: 0; }
+  @media (min-width: 768px) { .ph-map { height: 420px; } }
+  .ph-map.leaflet-container { background: var(--color-surface); font: inherit; }
+  .ph-pin span { display: block; width: 16px; height: 16px; border-radius: 50%; background: var(--color-accent);
+                 border: 3px solid var(--color-bg); box-shadow: 0 0 0 4px color-mix(in srgb, var(--color-accent) 35%, transparent); }
+  .ph-map .leaflet-popup-content-wrapper, .ph-map .leaflet-popup-tip { background: var(--color-surface); color: var(--color-text); border: 1px solid var(--color-border); box-shadow: 0 8px 24px rgba(0,0,0,.25); }
+  .ph-map .leaflet-popup-content { margin: 10px; }
+  /* Tema scuro: inverte i colori della mappa (le foto nei popup restano normali) */
+  html[data-theme="dark"] .ph-map .leaflet-tile-pane { filter: invert(1) hue-rotate(180deg) brightness(.9) contrast(.9) saturate(.6); }
+  .ph-map .leaflet-control-attribution { background: color-mix(in srgb, var(--color-surface) 85%, transparent); color: var(--color-text-muted); font-size: .65rem; }
+  .ph-map .leaflet-control-attribution a { color: var(--color-text-muted); }
+  .ph-map .leaflet-bar a { background: var(--color-surface); color: var(--color-text); border-color: var(--color-border); }
+  .ph-map .leaflet-bar { border: 1px solid var(--color-border); box-shadow: none; }
+  .ph-map .ph-popup { display: flex; flex-direction: column; gap: 2px; color: var(--color-text); text-decoration: none; }
+  .ph-map .ph-popup img { width: 100%; border-radius: 8px; margin-bottom: 6px; }
+  .ph-map .ph-popup span, .ph-map .ph-popup em { font-size: .75rem; color: var(--color-text-muted); font-style: normal; }
+
+  .ph-year { font-size: .9rem; font-weight: 600; margin-bottom: .75rem; }
+  /* Riga di card scorrevole in orizzontale (una riga per anno) */
+  .section-stack > .ph-group { margin-top: 1.25rem !important; }
+  .ph-arrows { display: flex; gap: .4rem; }
+  .ph-arrows[hidden] { display: none; }
+  .ph-arrow { width: 2rem; height: 2rem; border-radius: 999px; border: 1px solid var(--color-border); background: var(--color-surface);
+              color: var(--color-text); display: inline-flex; align-items: center; justify-content: center; cursor: pointer;
+              transition: border-color .15s ease-out, opacity .15s ease-out; }
+  .ph-arrow:hover:not(:disabled) { border-color: var(--color-accent); color: var(--color-accent); }
+  .ph-arrow:disabled { opacity: .35; cursor: default; }
+
+  .ph-grid { display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+             padding: .25rem 0 .5rem; scrollbar-width: none; overscroll-behavior-x: contain; }
+  .ph-grid::-webkit-scrollbar { display: none; }
+  .ph-grid > .ph-card { flex: 0 0 80%; scroll-snap-align: start; }
+  @media (min-width: 640px)  { .ph-grid > .ph-card { flex-basis: calc((100% - 1rem) / 2); } }
+  @media (min-width: 1024px) { .ph-grid > .ph-card { flex-basis: calc((100% - 3rem) / 4); } }
+
+  .ph-card { display: flex; flex-direction: column; border-radius: 14px; overflow: hidden; border: 1px solid var(--color-border);
+             background: var(--color-surface); color: inherit; text-decoration: none;
+             transition: transform .18s ease-out, border-color .18s ease-out, box-shadow .18s ease-out; }
+  .ph-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--color-accent) 45%, var(--color-border)); box-shadow: 0 12px 28px rgba(0,0,0,.18); }
+  .ph-card-img { position: relative; aspect-ratio: 4 / 3; overflow: hidden; display: flex; align-items: center; justify-content: center;
+                 color: var(--color-text-muted); background: var(--color-bg); }
+  .ph-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease-out; }
+  .ph-card:hover .ph-card-img img { transform: scale(1.04); }
+  .ph-count { position: absolute; right: 8px; bottom: 8px; padding: .1rem .5rem; border-radius: 999px; font-size: .7rem; color: #fff;
+              background: rgba(0,0,0,.55); backdrop-filter: blur(4px); }
+  .ph-card-text { padding: .75rem .85rem .85rem; display: flex; flex-direction: column; gap: .15rem; }
+  .ph-card-text h3 { margin: 0; font-size: .95rem; font-weight: 600; }
+  .ph-card-text h3 span { color: var(--color-text-muted); font-weight: 400; }
+  .ph-conf { font-size: .72rem; letter-spacing: .04em; text-transform: uppercase; color: var(--color-text-muted); }
+  .ph-date { font-size: .75rem; color: var(--color-text-muted); }
+</style>
+
+<section class="layout-page">
+  <div class="page-int section-stack">
+
+    <header class="ph-head">
+      <div class="space-y-2">
+        <h1 class="heading-page text-2xl sm:text-3xl">{{ .Title }}</h1>
+        {{ with .Description }}<p class="text-sm text-muted">{{ . }}</p>{{ end }}
+      </div>
+      <div class="ph-arrows" hidden>
+        <button type="button" class="ph-arrow" data-dir="-1" aria-label="Previous"><i class="fa-solid fa-chevron-left"></i></button>
+        <button type="button" class="ph-arrow" data-dir="1" aria-label="Next"><i class="fa-solid fa-chevron-right"></i></button>
+      </div>
+    </header>
+
+    {{ if $trips }}
+
+      {{- /* Dati per la mappa: solo i viaggi con coords */ -}}
+      {{- range $trips -}}
+        {{- $p := . -}}
+        {{- $cover := "" -}}
+        {{- with .Params.cover }}{{ $cover = $p.Resources.GetMatch . }}{{ end -}}
+        {{- if not $cover }}{{ $cover = index (.Resources.ByType "image") 0 }}{{ end -}}
+        {{- with .Params.coords -}}
+          {{- $thumb := "" -}}
+          {{- with $cover }}{{ $thumb = (.Fill "320x200 Center webp q75").RelPermalink }}{{ end -}}
+          {{- $points = $points | append (dict "lat" (index . 0) "lng" (index . 1) "title" $p.Title
+                "conf" ($p.Params.conference | default "") "date" ($p.Date.Format "Jan 2006")
+                "url" $p.RelPermalink "thumb" $thumb) -}}
+        {{- end -}}
+      {{- end -}}
+
+
+      {{- /* Tutti i viaggi in una sola riga scorrevole */ -}}
+        <div class="ph-group">
+          <div class="ph-grid">
+            {{ range $trips }}
+              {{- $p := . -}}
+              {{- $imgs := .Resources.ByType "image" -}}
+              {{- $cover := "" -}}
+              {{- with .Params.cover }}{{ $cover = $p.Resources.GetMatch . }}{{ end -}}
+              {{- if not $cover }}{{ $cover = index $imgs 0 }}{{ end -}}
+              <a href="{{ .RelPermalink }}" class="ph-card">
+                <div class="ph-card-img">
+                  {{ with $cover }}
+                    {{ $img := .Fill "720x540 Center webp q78" }}
+                    <img src="{{ $img.RelPermalink }}" width="{{ $img.Width }}" height="{{ $img.Height }}" alt="{{ $p.Title }}" loading="lazy">
+                  {{ else }}
+                    <i class="fa-regular fa-image"></i>
+                  {{ end }}
+                  {{ with len $imgs }}<span class="ph-count"><i class="fa-solid fa-camera"></i> {{ . }}</span>{{ end }}
+                </div>
+                <div class="ph-card-text">
+                  {{ with .Params.conference }}<span class="ph-conf">{{ . }}</span>{{ end }}
+                  <h3>{{ .Title }}{{ with .Params.country }}<span>, {{ . }}</span>{{ end }}</h3>
+                  <span class="ph-date">{{ .Date.Format "January 2006" }}</span>
+                </div>
+              </a>
+            {{ end }}
+          </div>
+        </div>
+
+      {{- /* Mappa, sotto le foto */ -}}
+      {{ if $points }}
+        <div>
+          <h2 class="ph-year">Map</h2>
+          <div id="ph-map" class="ph-map" aria-label="Map of the places I visited"></div>
+        </div>
+      {{ end }}
+
+    {{ else }}
+      <p class="text-sm text-muted">No photos yet.</p>
+    {{ end }}
+
+  </div>
+</section>
+
+<script>
+// Frecce per scorrere le righe di viaggi: compaiono solo se le card non stanno tutte nella riga
+(function () {
+  var row = document.querySelector(".ph-group .ph-grid"), arrows = document.querySelector(".ph-arrows");
+  if (!row || !arrows) return;
+  var prev = arrows.querySelector('[data-dir="-1"]'), next = arrows.querySelector('[data-dir="1"]');
+  function update() {
+    var max = row.scrollWidth - row.clientWidth;
+    arrows.hidden = max <= 2;
+    prev.disabled = row.scrollLeft <= 2;
+    next.disabled = row.scrollLeft >= max - 2;
+  }
+  arrows.addEventListener("click", function (e) {
+    var b = e.target.closest(".ph-arrow"); if (!b) return;
+    var card = row.querySelector(".ph-card");
+    var step = card ? card.getBoundingClientRect().width + 16 : row.clientWidth * 0.8;
+    row.scrollBy({ left: step * Number(b.dataset.dir), behavior: "smooth" });
+  });
+  row.addEventListener("scroll", update, { passive: true });
+  window.addEventListener("resize", update);
+  update();
+})();
+</script>
+
+{{ if $points }}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+(function () {
+  var points = {{ $points | jsonify | safeJS }};
+  var el = document.getElementById("ph-map");
+  if (!el || typeof L === "undefined" || !points.length) return;
+
+  var map = L.map(el, { scrollWheelZoom: false, worldCopyJump: true });
+
+  // Mappa OpenStreetMap standard: gratuita e senza chiave API.
+  // In tema scuro la scuriamo via CSS (vedi .ph-map .leaflet-tile-pane).
+  L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    maxZoom: 19,
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+
+  var icon = L.divIcon({ className: "ph-pin", html: "<span></span>", iconSize: [16, 16], iconAnchor: [8, 8] });
+  function esc(s) { var d = document.createElement("div"); d.textContent = s || ""; return d.innerHTML; }
+
+  var bounds = [];
+  points.forEach(function (p) {
+    var html = '<a class="ph-popup" href="' + p.url + '">' +
+      (p.thumb ? '<img src="' + p.thumb + '" alt="">' : "") +
+      "<strong>" + esc(p.title) + "</strong>" +
+      (p.conf ? "<span>" + esc(p.conf) + "</span>" : "") +
+      "<em>" + esc(p.date) + "</em></a>";
+    L.marker([p.lat, p.lng], { icon: icon, title: p.title }).addTo(map).bindPopup(html, { maxWidth: 220 });
+    bounds.push([p.lat, p.lng]);
+  });
+  if (bounds.length === 1) map.setView(bounds[0], 5);
+  else map.fitBounds(bounds, { padding: [40, 40], maxZoom: 5 });
+})();
+</script>
+{{ end }}
+{{ end }}
