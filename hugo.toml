@@ -195,11 +195,18 @@ cvPdf = "static/CV.pdf"
     avatar = "images/puck-fun.jpeg"  # Optional: 400x400px recommended
     location = "Ancona, Italy"
 
-    nowIntro = "Right now I'm a second year PhD candidate:"
-    now = [
-      "Implementing Cryptographic primitives",
-      "Transition to Post-Quantum Cryptography of the main network security protocols "
-    ]
+    email = "davide.dezuane@imtlucca.it"
+
+    nowIntro = """
+      My research focuses on **post-quantum cryptography**, in particular on **code-based schemes**: I design and analyse bit-flipping decoders for QC-MDPC codes, the family behind BIKE.
+      
+      On the applied side, I work on bringing post-quantum cryptography into real **network security protocols**, such as the Internet Key Exchange (IKE), including challenging settings like satellite communications.
+    """
+    nowTitle = "Right now I'm working on:"
+    #now = [
+    #  "Implementing cryptographic primitives",
+    #  "Post-quantum transition of the main network security protocols"
+    #]
 
   # Icon Libraries
   [params.icons]

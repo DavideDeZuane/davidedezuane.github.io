@@ -1,0 +1,48 @@
+{{- /*
+  Copia della sezione "now" del tema, con:
+  - testo in Markdown: **grassetto**, *corsivo*, [link](https://...), riga vuota = nuovo paragrafo
+  - icone Font Awesome scritte così:  :fa-lock:  (solid)   :fab-github:  (brands)   :far-envelope:  (regular)
+    i nomi sono quelli di https://fontawesome.com/icons senza il prefisso, es. fa-shield-halved -> :fa-shield-halved:
+*/ -}}
+{{- $hero := .Site.Params.hero -}}
+{{- $home := .Site.Params.home -}}
+
+{{- define "partials/inline/now-text.html" -}}
+  {{- /* toglie l'indentazione a inizio riga: in Markdown 4 spazi = blocco di codice */ -}}
+  {{- $t := replaceRE `(?m)^[ \t]+` "" . | markdownify -}}
+  {{- $t = replaceRE `:fab-([a-z0-9-]+):` `<i class="fa-brands fa-$1 now-icon"></i>` $t -}}
+  {{- $t = replaceRE `:far-([a-z0-9-]+):` `<i class="fa-regular fa-$1 now-icon"></i>` $t -}}
+  {{- $t = replaceRE `:fa-([a-z0-9-]+):` `<i class="fa-solid fa-$1 now-icon"></i>` $t -}}
+  {{- return ($t | safeHTML) -}}
+{{- end -}}
+
+{{ if $home.showNowSection }}
+  <style>
+    .now-text p + p { margin-top: .75rem; }
+    .now-text a, .now-list a { color: var(--color-text); text-decoration: underline;
+      text-decoration-color: color-mix(in srgb, var(--color-accent) 70%, transparent); text-underline-offset: 3px; }
+    .now-text a:hover, .now-list a:hover { color: var(--color-accent); }
+    .now-text strong, .now-list strong, .now-title strong { color: var(--color-text); font-weight: 600; }
+    .now-title { font-weight: 600; color: var(--color-text); margin: 1rem 0 .4rem; }
+    .now-icon { color: var(--color-accent); font-size: .9em; margin: 0 .2em; }
+    .now-list { list-style: none; padding-left: 0; }
+    .now-list li { display: flex; gap: .5rem; align-items: baseline; }
+    .now-list li::before { content: "›"; color: var(--color-accent); font-weight: 600; }
+  </style>
+  <div class="space-y-4">
+    <div class="card card-pad text-md text-muted">
+      {{ with $hero.nowIntro }}
+        <div class="now-text">{{ partial "inline/now-text.html" . }}</div>
+      {{ end }}
+
+      {{ with $hero.now }}
+        {{ with $hero.nowTitle }}<p class="now-title">{{ partial "inline/now-text.html" . }}</p>{{ end }}
+        <ul class="now-list space-y-1 {{ if not $hero.nowTitle }}mt-2{{ end }}">
+          {{ range . }}
+            <li><span>{{ partial "inline/now-text.html" . }}</span></li>
+          {{ end }}
+        </ul>
+      {{ end }}
+    </div>
+  </div>
+{{ end }}
