@@ -3,13 +3,19 @@
   - testo in Markdown: **grassetto**, *corsivo*, [link](https://...), riga vuota = nuovo paragrafo
   - icone Font Awesome scritte così:  :fa-lock:  (solid)   :fab-github:  (brands)   :far-envelope:  (regular)
     i nomi sono quelli di https://fontawesome.com/icons senza il prefisso, es. fa-shield-halved -> :fa-shield-halved:
+  - :email:  viene sostituito dall'email di [params.hero] email, scritta come "nome {at} dominio"
 */ -}}
 {{- $hero := .Site.Params.hero -}}
 {{- $home := .Site.Params.home -}}
 
 {{- define "partials/inline/now-text.html" -}}
   {{- /* toglie l'indentazione a inizio riga: in Markdown 4 spazi = blocco di codice */ -}}
-  {{- $t := replaceRE `(?m)^[ \t]+` "" . | markdownify -}}
+  {{- $t := replaceRE `(?m)^[ \t]+` "" .text | markdownify -}}
+  {{- with .email -}}
+    {{- $p := split . "@" -}}
+    {{- $link := printf `<a class="now-email" href="#" data-u="%s" data-d="%s"><i class="fa-regular fa-envelope"></i>%s {at} %s</a>` (index $p 0) (index $p 1) (index $p 0) (index $p 1) -}}
+    {{- $t = replace $t ":email:" $link -}}
+  {{- end -}}
   {{- $t = replaceRE `:fab-([a-z0-9-]+):` `<i class="fa-brands fa-$1 now-icon"></i>` $t -}}
   {{- $t = replaceRE `:far-([a-z0-9-]+):` `<i class="fa-regular fa-$1 now-icon"></i>` $t -}}
   {{- $t = replaceRE `:fa-([a-z0-9-]+):` `<i class="fa-solid fa-$1 now-icon"></i>` $t -}}
@@ -28,21 +34,42 @@
     .now-list { list-style: none; padding-left: 0; }
     .now-list li { display: flex; gap: .5rem; align-items: baseline; }
     .now-list li::before { content: "›"; color: var(--color-accent); font-weight: 600; }
+
+    /* Elenchi puntati scritti in Markdown dentro nowIntro */
+    .now-text ul { list-style: none; padding: 0; margin: .75rem 0; display: grid; gap: .7rem; }
+    .now-text li { position: relative; padding-left: 1.75rem; line-height: 1.6; }
+    .now-text li::before { content: "›"; position: absolute; left: .4rem; color: var(--color-accent); font-weight: 600; }
+    /* se la voce inizia con un'icona, l'icona fa da pallino */
+    .now-text li:has(> .now-icon:first-child)::before { content: none; }
+    .now-text li > .now-icon:first-child { position: absolute; left: 0; top: .3em; width: 1.2rem; margin: 0; text-align: center; }
+
+    /* Email nel testo */
+    .now-email { display: inline; white-space: nowrap; margin-left: .3em;
+                 font-family: ui-monospace, "SFMono-Regular", "JetBrains Mono", Menlo, Consolas, monospace;
+                 font-size: .9em; color: var(--color-text) !important; text-decoration: none !important; }
+    .now-email:hover { color: var(--color-accent) !important; }
+    .now-email i { color: var(--color-accent); font-size: .95em; margin-right: .4em; }
   </style>
   <div class="space-y-4">
     <div class="card card-pad text-md text-muted">
       {{ with $hero.nowIntro }}
-        <div class="now-text">{{ partial "inline/now-text.html" . }}</div>
+        <div class="now-text">{{ partial "inline/now-text.html" (dict "text" . "email" $hero.email) }}</div>
       {{ end }}
 
       {{ with $hero.now }}
-        {{ with $hero.nowTitle }}<p class="now-title">{{ partial "inline/now-text.html" . }}</p>{{ end }}
+        {{ with $hero.nowTitle }}<p class="now-title">{{ partial "inline/now-text.html" (dict "text" . "email" $hero.email) }}</p>{{ end }}
         <ul class="now-list space-y-1 {{ if not $hero.nowTitle }}mt-2{{ end }}">
           {{ range . }}
-            <li><span>{{ partial "inline/now-text.html" . }}</span></li>
+            <li><span>{{ partial "inline/now-text.html" (dict "text" . "email" $hero.email) }}</span></li>
           {{ end }}
         </ul>
       {{ end }}
     </div>
   </div>
 {{ end }}
+
+<script>
+  document.querySelectorAll(".now-email").forEach(function (a) {
+    a.href = "mailto:" + a.dataset.u + "@" + a.dataset.d;
+  });
+</script>

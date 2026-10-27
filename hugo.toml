@@ -198,15 +198,14 @@ cvPdf = "static/CV.pdf"
     email = "davide.dezuane@imtlucca.it"
 
     nowIntro = """
-      My research focuses on **post-quantum cryptography**, in particular on **code-based schemes**: I design and analyse bit-flipping decoders for QC-MDPC codes, the family behind BIKE.
-      
-      On the applied side, I work on bringing post-quantum cryptography into real **network security protocols**, such as the Internet Key Exchange (IKE), including challenging settings like satellite communications.
+    My research sits at the intersection of **post-quantum cryptography** and **network security**. I mainly work on: <br>
+
+    - :fa-shield-halved: **Code-based cryptography**: design and analysis of bit-flipping decoders for QC-MDPC codes KEMs.
+    - :fa-network-wired: **Post-quantum network protocols**: bringing quantum-safe key exchange into real protocols.
+    - :fa-microchip: **Secure and efficient implementations**: software optimization of post-quantum schemes and protection against side-channel attacks.
+    
+    I'm always open to discussing research ideas and collaborations: feel free to reach out at :email:
     """
-    nowTitle = "Right now I'm working on:"
-    #now = [
-    #  "Implementing cryptographic primitives",
-    #  "Post-quantum transition of the main network security protocols"
-    #]
 
   # Icon Libraries
   [params.icons]
