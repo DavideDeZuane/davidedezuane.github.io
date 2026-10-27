@@ -2,6 +2,23 @@
     <section class="layout-page">
         <div class="page-int section-stack">
 
+          {{/* Intestazione con download del CV in PDF */}}
+          {{ $pdf := .Site.Params.cvPdf | default "CV.pdf" }}
+          <style>
+            .cv-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 0 !important; }
+            .cv-download { display: inline-flex; align-items: center; gap: .5rem; padding: .5rem 1rem; border-radius: 999px;
+                           border: 1px solid var(--color-border); background: var(--color-surface); color: var(--color-text);
+                           font-size: .85rem; text-decoration: none; transition: border-color .15s ease-out, transform .15s ease-out; }
+            .cv-download:hover { border-color: var(--color-accent); transform: translateY(-2px); }
+            .cv-download i { color: var(--color-accent); }
+          </style>
+          <header class="cv-head">
+            <h1 class="heading-page text-2xl sm:text-3xl">{{ .Title }}</h1>
+            <a class="cv-download" href="{{ $pdf | relURL }}" target="_blank" rel="noopener">
+              <i class="fa-solid fa-file-arrow-down"></i> Download CV (PDF)
+            </a>
+          </header>
+
             {{ $education  := .Site.Data.cv.education  }}
             {{ $experience := .Site.Data.cv.experience }}
             {{ $awards     := .Site.Data.cv.awards     }}
