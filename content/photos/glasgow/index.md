@@ -9,8 +9,8 @@
 title: "Glasgow"                  # città (titolo della card)
 country: "Scotland"               # paese (usato anche nel contatore)
 date: 2026-05-28                  # data del viaggio (ordinamento e anno)
-conference: "IEEE ICC 2026"       # opzionale
-conferenceUrl: "https://example.org"   # opzionale
+#conference: "IEEE ICC 2026"       # opzionale
+#conferenceUrl: "https://example.org"   # opzionale
 coords: [55.8642, -4.2518]        # [latitudine, longitudine] per la mappa
 cover: "cover.jpg"                # opzionale, altrimenti la prima foto
 
