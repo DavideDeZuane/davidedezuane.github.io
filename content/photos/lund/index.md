@@ -13,7 +13,7 @@ places:
   # - name: "Malmö"
   #   coords: [55.6050, 13.0038]
 
-# cover: "nome-foto.jpg"          # opzionale, altrimenti la prima foto in ordine alfabetico
+cover: "cover.jpg"          # opzionale, altrimenti la prima foto in ordine alfabetico
 
 # Scrivi nella didascalia dove è stata scattata ogni foto
 # captions:
