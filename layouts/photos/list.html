@@ -74,18 +74,30 @@
 
     {{ if $trips }}
 
-      {{- /* Dati per la mappa: solo i viaggi con coords */ -}}
+      {{- /* Dati per la mappa.
+             - coords: [lat, lng]                      -> un punto
+             - places: [{name, coords}, ...]           -> un punto per ogni luogo (es. Oslo e Bergen)
+           I punti di uno stesso viaggio portano tutti alla stessa pagina. */ -}}
       {{- range $trips -}}
         {{- $p := . -}}
         {{- $cover := "" -}}
         {{- with .Params.cover }}{{ $cover = $p.Resources.GetMatch . }}{{ end -}}
         {{- if not $cover }}{{ $cover = index (.Resources.ByType "image") 0 }}{{ end -}}
-        {{- with .Params.coords -}}
-          {{- $thumb := "" -}}
+        {{- $thumb := "" -}}
+        {{- if or .Params.coords .Params.places -}}
           {{- with $cover }}{{ $thumb = (.Fill "320x200 Center webp q75").RelPermalink }}{{ end -}}
-          {{- $points = $points | append (dict "lat" (index . 0) "lng" (index . 1) "title" $p.Title
-                "date" ($p.Date.Format "Jan 2006")
-                "url" $p.RelPermalink "thumb" $thumb) -}}
+        {{- end -}}
+        {{- with .Params.places -}}
+          {{- range . -}}
+            {{- $points = $points | append (dict "lat" (index .coords 0) "lng" (index .coords 1)
+                  "title" (.name | default $p.Title) "trip" $p.Title
+                  "date" ($p.Date.Format "Jan 2006") "url" $p.RelPermalink "thumb" $thumb) -}}
+          {{- end -}}
+        {{- else -}}
+          {{- with .Params.coords -}}
+            {{- $points = $points | append (dict "lat" (index . 0) "lng" (index . 1) "title" $p.Title "trip" ""
+                  "date" ($p.Date.Format "Jan 2006") "url" $p.RelPermalink "thumb" $thumb) -}}
+          {{- end -}}
         {{- end -}}
       {{- end -}}
 
@@ -189,6 +201,7 @@ document.querySelectorAll(".ph-group").forEach(function (g) {
     var html = '<a class="ph-popup" href="' + p.url + '">' +
       (p.thumb ? '<img src="' + p.thumb + '" alt="">' : "") +
       "<strong>" + esc(p.title) + "</strong>" +
+      (p.trip && p.trip !== p.title ? "<span>" + esc(p.trip) + "</span>" : "") +
       "<em>" + esc(p.date) + "</em></a>";
     L.marker([p.lat, p.lng], { icon: icon, title: p.title }).addTo(map).bindPopup(html, { maxWidth: 220 });
     bounds.push([p.lat, p.lng]);

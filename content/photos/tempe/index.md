@@ -1,6 +1,6 @@
 ---
 title: "Tempe"
-country: "USA"
+country: "Arizona"
 date: 2026-06-13                 # TODO: data del viaggio (AAAA-MM-GG)
 coords: [33.4255, -111.9400]
 cover: "cover.jpg"          # opzionale, altrimenti la prima foto in ordine alfabetico
