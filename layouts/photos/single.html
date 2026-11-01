@@ -2,11 +2,23 @@
   Pagina di un viaggio: /photos/<nome>/
   File: layouts/photos/single.html (radice del sito, NON nel tema). Stile qui dentro.
   Le foto si aprono a schermo intero con GLightbox, già caricato dal tema.
-  Hugo pubblica solo copie ridimensionate (WebP): niente EXIF/GPS degli originali.
+  Hugo pubblica solo copie ridimensionate delle foto (WebP): niente EXIF/GPS degli originali.
+  I video (mp4, webm, mov) vengono pubblicati così come sono: comprimili e togli i metadati prima.
+
+  Viaggi con più destinazioni: metti le foto in sottocartelle, una per tappa, es.
+    content/photos/norway/oslo/*.jpg   e   content/photos/norway/bergen/*.jpg
+  Ogni sottocartella diventa un gruppo con il suo titolo. Il titolo è il nome della cartella
+  ("oslo" -> "Oslo"), oppure quello scritto in front matter:  groups: { oslo: "Oslo", bergen: "Bergen" }
+  I gruppi sono in ordine alfabetico: per scegliere l'ordine usa un numero davanti
+  ("1-oslo", "2-bergen"); il numero non compare nel titolo.
+  Le foto direttamente nella cartella del viaggio compaiono per prime, senza titolo.
+  Didascalie: si può usare il nome del file da solo ("opera.jpg") o con la cartella ("oslo/opera.jpg").
 */ -}}
 {{ define "main" }}
-{{- $images := .Resources.ByType "image" -}}
+{{- /* Foto e video insieme, in ordine alfabetico per nome del file */ -}}
+{{- $images := sort ((.Resources.ByType "image") | append (.Resources.ByType "video")) "Name" -}}
 {{- $captions := .Params.captions | default dict -}}
+{{- $groupTitles := .Params.groups | default dict -}}
 
 <style>
   .ph-back { font-size: .8rem; color: var(--color-text-muted); text-decoration: none; display: inline-flex; gap: .4rem; align-items: center; }
@@ -28,6 +40,16 @@
   .ph-gallery a { display: block; border-radius: 12px; overflow: hidden; }
   .ph-gallery img { width: 100%; height: auto; display: block; transition: transform .35s ease-out; }
   .ph-gallery a:hover img { transform: scale(1.03); }
+  .ph-video { position: relative; }
+  .ph-video video { width: 100%; height: auto; display: block; pointer-events: none; background: #000; }
+  .ph-play { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; }
+  .ph-play i { width: 3.2rem; height: 3.2rem; border-radius: 999px; display: flex; align-items: center; justify-content: center;
+               padding-left: .2rem; color: #fff; font-size: 1.1rem; background: rgba(0,0,0,.5); backdrop-filter: blur(4px);
+               transition: transform .2s ease-out, background-color .2s ease-out; }
+  .ph-video:hover .ph-play i { transform: scale(1.08); background: color-mix(in srgb, var(--color-accent) 75%, transparent); }
+  .ph-stop { margin: 0 0 .9rem; font-size: 1.05rem; font-weight: 600; display: flex; align-items: center; gap: .5rem; }
+  .ph-stop i { color: var(--color-accent); font-size: .85rem; }
+  .ph-stop-wrap + .ph-stop-wrap { margin-top: 2.25rem; }
   .ph-gallery figcaption { margin-top: .4rem; font-size: .75rem; color: var(--color-text-muted); }
 
   .ph-nav { display: flex; justify-content: space-between; gap: 1rem; font-size: .85rem; }
@@ -54,18 +76,44 @@
     </header>
 
     {{ with $images }}
-      <div class="ph-gallery">
-        {{ range . }}
-          {{- $thumb := .Resize "900x webp q78" -}}
-          {{- $full := .Fit "2400x2400 webp q85" -}}
-          {{- $cap := index $captions .Name | default "" -}}
-          <figure>
-            <a href="{{ $full.RelPermalink }}" class="glightbox" data-gallery="trip"{{ with $cap }} data-glightbox="description: {{ . }}"{{ end }}>
-              <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="{{ $cap | default $.Title }}" loading="lazy">
-            </a>
-            {{ with $cap }}<figcaption>{{ . }}</figcaption>{{ end }}
-          </figure>
-        {{ end }}
+      {{- /* Raggruppa per sottocartella ("" = foto nella cartella principale) */ -}}
+      {{- $dirs := slice -}}
+      {{- range . }}{{ $d := path.Dir .Name }}{{ if eq $d "." }}{{ $d = "" }}{{ end }}{{ $dirs = $dirs | append $d }}{{ end -}}
+      {{- $dirs = $dirs | uniq | sort -}}
+      {{- $all := . -}}
+      <div>
+      {{ range $dirs }}
+        {{- $dir := . -}}
+        <div class="ph-stop-wrap">
+          {{ with $dir }}
+            {{- $t := index $groupTitles . | default (replaceRE `^[0-9]+[-_ ]*` "" . | replaceRE `[-_]` " " | title) -}}
+            <h2 class="ph-stop"><i class="fa-solid fa-location-dot"></i>{{ $t }}</h2>
+          {{ end }}
+          <div class="ph-gallery">
+          {{ range $all }}
+            {{- $d := path.Dir .Name }}{{ if eq $d "." }}{{ $d = "" }}{{ end -}}
+            {{- if eq $d $dir -}}
+            {{- $cap := index $captions .Name | default (index $captions (path.Base .Name)) | default "" -}}
+            <figure>
+            {{ if eq .ResourceType "video" }}
+              <a href="{{ .RelPermalink }}" class="glightbox ph-video" data-gallery="trip" data-type="video"{{ with $cap }} data-glightbox="description: {{ . }}"{{ end }}>
+                <video src="{{ .RelPermalink }}#t=0.1" muted playsinline preload="metadata"></video>
+                <span class="ph-play"><i class="fa-solid fa-play"></i></span>
+              </a>
+            {{ else }}
+              {{- $thumb := .Resize "900x webp q78" -}}
+              {{- $full := .Fit "2400x2400 webp q85" -}}
+              <a href="{{ $full.RelPermalink }}" class="glightbox" data-gallery="trip"{{ with $cap }} data-glightbox="description: {{ . }}"{{ end }}>
+                <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="{{ $cap | default $.Title }}" loading="lazy">
+              </a>
+            {{ end }}
+              {{ with $cap }}<figcaption>{{ . }}</figcaption>{{ end }}
+            </figure>
+            {{- end -}}
+          {{ end }}
+          </div>
+        </div>
+      {{ end }}
       </div>
     {{ end }}
 

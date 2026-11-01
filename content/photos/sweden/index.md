@@ -12,9 +12,17 @@ places:
   - name: "Malmö"
     coords: [55.6050, 13.0038]
 
-cover: "cover.jpg"          # opzionale, altrimenti la prima foto in ordine alfabetico
+cover: "2-lund/cover.jpg"          # opzionale, altrimenti la prima foto in ordine alfabetico
+
+groups:
+  1-malmo: "Malmo"
+  2-lund: "Lund"
 
 # Scrivi nella didascalia dove è stata scattata ogni foto
 # captions:
 #   cattedrale.jpg: "Lund Cathedral"
+
+captions:
+  mulino.jpg: "Slottsmöllan (Malmö's Historic Windmill)"
+  
 ---

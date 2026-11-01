@@ -14,6 +14,10 @@ places:
 
 cover: "cover.jpg"          # opzionale, altrimenti la prima foto in ordine alfabetico
 
+groups:
+  1-bergen: "Bergen & the fjords"
+  2-oslo: "Oslo"
+
 # Scrivi nella didascalia dove è stata scattata ogni foto
 # captions:
 #   oslo-opera.jpg: "Oslo Opera House"
