@@ -1,6 +1,5 @@
 ---
-title: "Lund"
-country: "Sweden"
+title: "Sweden"
 date: 2026-10-28                  # TODO: data del viaggio (AAAA-MM-GG)
 # conference: "..."               # opzionale: nome dell'evento
 # conferenceUrl: "https://..."    # opzionale
@@ -10,8 +9,8 @@ date: 2026-10-28                  # TODO: data del viaggio (AAAA-MM-GG)
 places:
   - name: "Lund"
     coords: [55.7047, 13.1910]
-  # - name: "Malmö"
-  #   coords: [55.6050, 13.0038]
+  - name: "Malmö"
+    coords: [55.6050, 13.0038]
 
 cover: "cover.jpg"          # opzionale, altrimenti la prima foto in ordine alfabetico
 
