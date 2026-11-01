@@ -52,6 +52,13 @@
   .ph-stop-wrap + .ph-stop-wrap { margin-top: 2.25rem; }
   .ph-gallery figcaption { margin-top: .4rem; font-size: .75rem; color: var(--color-text-muted); }
 
+  /* Didascalia a schermo intero (GLightbox): niente banda bianca, testo chiaro sotto la foto */
+  .glightbox-clean .gslide-description { background: transparent !important; }
+  .glightbox-clean .gdesc-inner { padding: .75rem .5rem 0 !important; }
+  .glightbox-clean .gslide-desc { color: rgba(255,255,255,.85) !important; font-family: inherit !important;
+                                  font-size: .9rem !important; line-height: 1.5 !important; text-align: center; margin: 0 !important; }
+  .glightbox-mobile .glightbox-container .gslide-description { background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,.75) 100%) !important; }
+
   .ph-nav { display: flex; justify-content: space-between; gap: 1rem; font-size: .85rem; }
   .ph-nav a { color: var(--color-text-muted); text-decoration: none; display: inline-flex; gap: .4rem; align-items: center; }
   .ph-nav a:hover { color: var(--color-accent); }
