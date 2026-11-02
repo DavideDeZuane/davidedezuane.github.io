@@ -2,7 +2,7 @@
 
 ## Home
 
-Test
+Theme: [minimal-black](https://minimal-black-demo.netlify.app/)
 
 ### Tech-stack
 
