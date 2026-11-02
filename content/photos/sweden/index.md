@@ -24,7 +24,6 @@ groups:
 
 captions:
   cover.jpg: "Lund Cathedral's tower"
-  mulino.jpg: "Slottsmöllan (Malmö's Historic Windmill)"
   lund-university.jpg: "Lund University Main Building"
   lund-cathedral.jpg: "Lund Cathedral"
   cathedral-aspe.jpg: "Lund Cathedral's aspe by night"
@@ -32,5 +31,11 @@ captions:
   botanical-garden.jpg: "Botaniska trädgården"
   botanical-garden2.jpg: "Botaniska trädgården"
   park.jpg: "Stadsparken" 
+
+  mulino.jpg: "Slottsmöllan (Malmö's Historic Windmill)"
+  Kungsparken.jpg: "Kungsparken"
+  Kungsparken2.jpg: "Kungsparken"
+  peter-church.jpg: "St. Peter's Church"
+  stortorget.jpg: "Stortorget (Malmö's main square)"
   
 ---
